@@ -2,6 +2,7 @@ package asgn2Pizzas;
 
 import java.time.LocalTime;
 
+
 import asgn2Exceptions.PizzaException;
 
 
@@ -35,7 +36,7 @@ public class MargheritaPizza extends Pizza {
 	 *
 	 */
 	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
-		// TO DO
+		super(quantity, orderTime, deliveryTime, "margherita", 8);
 	}
 
 }
