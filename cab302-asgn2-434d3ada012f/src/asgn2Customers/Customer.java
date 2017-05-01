@@ -18,10 +18,36 @@ public abstract class Customer {
 	private int locationY;
 	private String type;
 	
+	private final int MIN_NAME_LENGTH = 1;
 	private final int MAX_NAME_LENGTH = 20;
+	private final int MOBILE_LENGTH = 10;
 	
-	private void checkIfInputIsFine (String name, String mobileNumber, int locationX, int locationY, String type) {
-		//
+	private int countSpacesInString (String string) {
+		int count = 0;
+		for (int i = 0; i < string.length(); i++) {
+			if (string.charAt(i) == ' ') {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	private void checkIfInputIsFine (String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException {
+		// Mobile Number must be 10 chars long and start with 0
+		if (mobileNumber.length() != MOBILE_LENGTH || mobileNumber.charAt(0) != '0') {
+			throw new CustomerException();
+		}
+		
+		// Customer name must be 1 - 20 characters long. Cannot only be white spaces.
+		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH || countSpacesInString(name) == name.length()) {
+			throw new CustomerException();
+		}
+		
+		// Ensure location IS 0,0 when type is pickup
+		
+		// Ensure location ISN'T 0,0 when type is delivery
+		
+		// Ensure locationX and locationY are both less than or equal to 10
 	}
 	
 	/**
