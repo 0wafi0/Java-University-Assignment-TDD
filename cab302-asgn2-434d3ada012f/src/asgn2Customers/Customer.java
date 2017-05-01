@@ -12,7 +12,18 @@ import asgn2Exceptions.CustomerException;
 */
 public abstract class Customer {
 
-
+	private String name;
+	private String mobileNumber;
+	private int locationX;
+	private int locationY;
+	private String type;
+	
+	private final int MAX_NAME_LENGTH = 20;
+	
+	private void checkIfInputIsFine (String name, String mobileNumber, int locationX, int locationY, String type) {
+		//
+	}
+	
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.2. 
@@ -32,22 +43,30 @@ public abstract class Customer {
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
 		// TO DO
+		checkIfInputIsFine(name, mobileNumber, locationX, locationY, type);
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.locationX = locationX;
+		this.locationY = locationY;
+		this.type = type;
 	}
 	
 	/**
 	 * Returns the Customer's name.
 	 * @return The Customer's name.
 	 */
-	public final String getName(){
+	public final String getName () {
 		// TO DO
+		return this.name;
 	}
 	
 	/**
 	 * Returns the Customer's mobile number.
 	 * @return The Customer's mobile number.
 	 */
-	public final String getMobileNumber(){
+	public final String getMobileNumber () {
 		// TO DO
+		return this.mobileNumber;
 	}
 
 	/**
@@ -55,8 +74,9 @@ public abstract class Customer {
 	 * The valid alternatives are listed in Section 5.2 of the Assignment Specification. 
 	 * @return A human understandable description of the Customer's type.
 	 */
-	public final String getCustomerType(){
+	public final String getCustomerType () {
 		// TO DO
+		return this.type;
 	}
 	
 	/**
@@ -64,8 +84,9 @@ public abstract class Customer {
 	 * that the Customer is located relative to the Pizza Palace restaurant. 
 	 * @return The Customer's X location
 	 */
-	public final int getLocationX(){
+	public final int getLocationX () {
 		// TO DO
+		return this.locationX;
 	}
 
 	/**
@@ -73,8 +94,9 @@ public abstract class Customer {
 	 * that the Customer is located relative to the Pizza Palace restaurant. 
 	 * @return The Customer's Y location
 	 */
-	public final int getLocationY(){
+	public final int getLocationY () {
 		// TO DO
+		return this.locationY;
 	}
 
 	/**
