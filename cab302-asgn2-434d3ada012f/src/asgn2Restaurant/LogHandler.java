@@ -101,21 +101,14 @@ public class LogHandler {
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
-		String name;
-		String mobileNumber;
-		String type;
-		int locationX;
-		int locationY;
-		Customer customer;
-		
 		String[] customerInfo = line.split(",");
-		name = customerInfo[2];
-		mobileNumber = customerInfo[3];
-		type = customerInfo[4];
-		locationX = Integer.parseInt(customerInfo[5]);
-		locationY = Integer.parseInt(customerInfo[6]);
+		String name = customerInfo[2];
+		String mobileNumber = customerInfo[3];
+		String type = customerInfo[4];
+		int locationX = Integer.parseInt(customerInfo[5]);
+		int locationY = Integer.parseInt(customerInfo[6]);
 		
-		customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
+		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
 		
 		return customer;
 	}
