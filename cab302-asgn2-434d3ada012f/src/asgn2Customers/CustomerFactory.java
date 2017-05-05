@@ -39,11 +39,14 @@ public class CustomerFactory {
 		if (customerCode.equals(PICK_UP)) {
 			customer = new PickUpCustomer(name, mobileNumber, locationX, locationY);
 		}
-		if (customerCode.equals(DRONE_DELIVER)) {
+		else if (customerCode.equals(DRONE_DELIVER)) {
 			customer = new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
 		}
-		if (customerCode.equals(DRIVER_DELIVER)) {
+		else if (customerCode.equals(DRIVER_DELIVER)) {
 			customer = new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else {
+			throw new CustomerException();
 		}
 
 		return customer;
