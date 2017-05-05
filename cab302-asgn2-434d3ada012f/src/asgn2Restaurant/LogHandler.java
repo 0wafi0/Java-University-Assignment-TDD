@@ -1,12 +1,21 @@
 package asgn2Restaurant;
 
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+
+
+
+// My imports:
+import java.io.*;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -19,7 +28,10 @@ import asgn2Pizzas.Pizza;
  */
 public class LogHandler {
 	
-
+	private String logFile1 = "20170101.txt";
+	private String logFile2 = "20170102.txt";
+	private String logFile3 = "20170103.txt";
+	
 
 	/**
 	 * Returns an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file.
@@ -31,7 +43,39 @@ public class LogHandler {
 	 */
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		// TO DO
+		FileInputStream inputStream;
+		BufferedReader bufferReader;
+		InputStreamReader streamReader;
+		String line;
+		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		
+		try {
+			inputStream = new FileInputStream(filename);
+			streamReader = new InputStreamReader(inputStream);
+			bufferReader = new BufferedReader(streamReader);
+			
+			do {
+				line = bufferReader.readLine();
+				Customer customer = createCustomer(line);
+				customerDataset.add(customer);
+				
+			} while (line != null);
+			
+			inputStream.close();
+			bufferReader.close();
+			streamReader.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("This happens when 'filename' is invalid");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("This happens when 'bufferReader' throws an exception");
+		}
+		
+		return customerDataset;
 	}		
 
 	/**
@@ -57,6 +101,23 @@ public class LogHandler {
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
+		String name;
+		String mobileNumber;
+		String type;
+		int locationX;
+		int locationY;
+		Customer customer;
+		
+		String[] customerInfo = line.split(",");
+		name = customerInfo[2];
+		mobileNumber = customerInfo[3];
+		type = customerInfo[4];
+		locationX = Integer.parseInt(customerInfo[5]);
+		locationY = Integer.parseInt(customerInfo[6]);
+		
+		customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
+		
+		return customer;
 	}
 	
 	/**
