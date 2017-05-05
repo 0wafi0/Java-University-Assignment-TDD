@@ -28,9 +28,9 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
-	private String logFile1 = "20170101.txt";
-	private String logFile2 = "20170102.txt";
-	private String logFile3 = "20170103.txt";
+	private static String logFile1 = "20170101.txt";
+	private static String logFile2 = "20170102.txt";
+	private static String logFile3 = "20170103.txt";
 	
 
 	/**
@@ -49,6 +49,10 @@ public class LogHandler {
 		String line;
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		
+		if (!filename.equals(logFile1) && !filename.equals(logFile2) && !filename.equals(logFile3)) {
+			throw new LogHandlerException();
+		}
+		
 		try {
 			inputStream = new FileInputStream(filename);
 			streamReader = new InputStreamReader(inputStream);
@@ -58,7 +62,6 @@ public class LogHandler {
 				line = bufferReader.readLine();
 				Customer customer = createCustomer(line);
 				customerDataset.add(customer);
-				
 			} while (line != null);
 			
 			inputStream.close();
