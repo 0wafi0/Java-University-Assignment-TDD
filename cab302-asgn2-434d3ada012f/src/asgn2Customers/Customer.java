@@ -38,7 +38,29 @@ public abstract class Customer {
 		return count;
 	}
 	
+	
+	private boolean allNumeric (String string) {
+		boolean numeric = true;
+		
+		for (int i = 0; i < string.length(); i++) {
+			char currentChar = string.charAt(i);
+			
+			// If it is out of range of 0 - 9 in ASCII table, then it is not numeric
+			numeric &= (currentChar < '0' || currentChar > '9');
+		}
+		
+		return numeric;
+	}
+	
+	
+	
 	private void checkIfInputIsFine (String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException {
+		
+		// Check if all chars in mobileNumber are numeric...
+		if (!allNumeric(mobileNumber)) {
+			throw new CustomerException();
+		}
+		
 		// Mobile Number must be 10 chars long and start with 0
 		if (mobileNumber.length() != MOBILE_LENGTH || mobileNumber.charAt(0) != '0') {
 			throw new CustomerException();
