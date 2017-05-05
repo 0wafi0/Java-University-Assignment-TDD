@@ -21,11 +21,17 @@ public abstract class Customer {
 	private final int MIN_NAME_LENGTH = 1;
 	private final int MAX_NAME_LENGTH = 20;
 	private final int MOBILE_LENGTH = 10;
+	private final String PICK_UP = "PUC";
+	private final String DRONE_DELIVER = "DNC";
+	private final String DRIVER_DELIVER = "DVC";
+	private final int MAX_DISTANCE = 10;
+	private final char SPACE = ' ';
 	
-	private int countSpacesInString (String string) {
+	
+	private int countCharacterInString (String string, char character) {
 		int count = 0;
 		for (int i = 0; i < string.length(); i++) {
-			if (string.charAt(i) == ' ') {
+			if (string.charAt(i) == character) {
 				count++;
 			}
 		}
@@ -39,15 +45,28 @@ public abstract class Customer {
 		}
 		
 		// Customer name must be 1 - 20 characters long. Cannot only be white spaces.
-		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH || countSpacesInString(name) == name.length()) {
+		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH || countCharacterInString(name, SPACE) == name.length()) {
 			throw new CustomerException();
 		}
 		
+		// Make sure the type is actually valid (NOT ASKED FOR! Maybe move this to a test?)
+		if (!type.equals(PICK_UP) && !type.equals(DRIVER_DELIVER) && !type.equals(DRONE_DELIVER)) {
+			throw new CustomerException();
+		}
 		// Ensure location IS 0,0 when type is pickup
+		if (type.equals(PICK_UP) && (locationX != 0 || locationY != 0)) {
+			throw new CustomerException();
+		}
 		
 		// Ensure location ISN'T 0,0 when type is delivery
+		if ((type.equals(DRONE_DELIVER) || type.equals(DRIVER_DELIVER)) && (locationX == 0 && locationY == 0)) {
+			throw new CustomerException();
+		}
 		
 		// Ensure locationX and locationY are both less than or equal to 10
+		if (locationX > MAX_DISTANCE && locationY > MAX_DISTANCE) {
+			throw new CustomerException();
+		}
 	}
 	
 	/**
