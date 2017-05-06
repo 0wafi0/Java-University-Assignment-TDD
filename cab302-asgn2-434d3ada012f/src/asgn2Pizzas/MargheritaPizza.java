@@ -36,7 +36,7 @@ public class MargheritaPizza extends Pizza {
 	 *
 	 */
 	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
-		super(quantity, orderTime, deliveryTime, "margherita", 8);
+			super(quantity, orderTime, deliveryTime, "margherita", 8);
 	}
 
 }
