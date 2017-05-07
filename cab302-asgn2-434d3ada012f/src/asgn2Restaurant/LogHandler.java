@@ -41,7 +41,6 @@ public class LogHandler {
 	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
 	 * 
 	 */
-	private static final String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
 	
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		
@@ -66,7 +65,7 @@ public class LogHandler {
             }
         } catch (IOException e) {
             throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
-        }
+        } catch()
         return output;
 	}		
 
@@ -94,6 +93,9 @@ public class LogHandler {
 		Pizza temp;
 		String[] data = line.split(",");
         if(data == null) {
+        	throw new LogHandlerException("Error detected in the log");
+        }
+        if(data.length != 9) {
         	throw new LogHandlerException("Error detected in the log");
         }
         for(int i = 0; i < 2; i++) {

@@ -3,6 +3,7 @@ package asgn2Restaurant;
 import java.util.ArrayList;
 
 import asgn2Customers.Customer;
+import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 
 /**
@@ -71,7 +72,10 @@ public class PizzaRestaurant {
 	 * @throws PizzaException if index is invalid.
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
-		// TO DO
+		if(index < 0 || index > (pizzas.size() - 1)) {
+			throw new PizzaException("Invalid index");
+		}
+		return pizzas.get(index);
 	}
 	
 	/**
@@ -81,7 +85,7 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the pizzas field.
 	 */
 	public int getNumPizzaOrders(){
-		// TO DO
+		return pizzas.size();
 	}
 
 	/**
@@ -111,7 +115,11 @@ public class PizzaRestaurant {
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
 	public double getTotalProfit(){
-		// TO DO
+		double output = 0;
+		for(int i = 0; i < pizzas.size(); i++) {
+			output += pizzas.get(i).getOrderProfit();
+		}
+		return output;
 	}
 	
 	/**
