@@ -7,6 +7,7 @@ import org.junit.Test;
 import asgn2Customers.Customer;
 import asgn2Customers.CustomerFactory;
 import asgn2Customers.DriverDeliveryCustomer;
+import asgn2Customers.DroneDeliveryCustomer;
 import asgn2Exceptions.CustomerException;
 
 /**
@@ -81,7 +82,7 @@ public class CustomerTests {
 	}
 	
 	/**
-	 * General testing of the abstract Customer class
+	 * General testing of the abstract Customer class using DriverDeliveryClass
 	 */
 	@Test
 	public void GeneralTestAbstractCustomerClass() throws CustomerException {
@@ -108,6 +109,6 @@ public class CustomerTests {
 	@Test
 	public void GeneralTestDriverDeliveryCustomer() throws CustomerException {
 		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
-		Customer temp1 = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
+		assertEquals(temp.getCustomerType(), "DVC");		
 	}
 }
