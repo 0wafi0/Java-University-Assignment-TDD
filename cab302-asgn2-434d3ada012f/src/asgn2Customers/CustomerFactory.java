@@ -13,6 +13,9 @@ import asgn2Exceptions.CustomerException;
  */
 
 public class CustomerFactory {
+	private final static String PICK_UP = "PUC";
+	private final static String DRONE_DELIVER = "DNC";
+	private final static String DRIVER_DELIVER = "DVC";
 
 	/**
 	 * A method that uses the Factory Method pattern to produce an instance of one of the asgn2Customers.Customer subclasses. 
@@ -29,5 +32,23 @@ public class CustomerFactory {
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
 		// TO DO
+		
+		Customer customer = null;
+		// Basically just a bunch of if statements to decide what type of customer we are...
+		
+		if (customerCode.equals(PICK_UP)) {
+			customer = new PickUpCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else if (customerCode.equals(DRONE_DELIVER)) {
+			customer = new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else if (customerCode.equals(DRIVER_DELIVER)) {
+			customer = new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else {
+			throw new CustomerException();
+		}
+
+		return customer;
 	}
 }

@@ -1,13 +1,12 @@
 package asgn2Restaurant;
-
 import java.util.ArrayList;
-
 import asgn2Customers.Customer;
+import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 
 /**
- * This class acts as a ‘model’ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
+ * This class acts as a ï¿½modelï¿½ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
  *  It contains a method that can populate the ArrayLists,  several methods to retrieve information about the ArrayLists and 
  *  a method to reset the array list. Information about the x and y location of the restaurant and the time that first and last 
  *  orders are accepted are listed in Section 5 of the Assignment Specification. 
@@ -34,6 +33,8 @@ public class PizzaRestaurant {
 	 */
 	public PizzaRestaurant() {
 		// TO DO
+		customers = new ArrayList<Customer>();
+		pizzas = new ArrayList<Pizza>();
 	}
 
 	/**
@@ -63,6 +64,10 @@ public class PizzaRestaurant {
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
 		// TO DO
+		if (index < 0 || index > getNumCustomerOrders()) {
+			throw new CustomerException();
+		}
+		return customers.get(index);
 	}
 	
 	/**
@@ -96,6 +101,7 @@ public class PizzaRestaurant {
 	 */
 	public int getNumCustomerOrders(){
 		// TO DO
+		return customers.size();
 	}
 
 			
@@ -107,6 +113,11 @@ public class PizzaRestaurant {
 	 */
 	public double getTotalDeliveryDistance(){
 		// TO DO
+		double distance = 0;
+		for (Customer customer : customers) {
+			distance += customer.getDeliveryDistance();
+		}
+		return distance;
 	}
 
 	/**
@@ -114,6 +125,7 @@ public class PizzaRestaurant {
 	 * 
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
+
 	public double getTotalProfit(){
 		double output = 0;
 		for(int i = 0; i < pizzas.size(); i++) {
@@ -128,8 +140,10 @@ public class PizzaRestaurant {
 	 * <P> PRE: True
 	 * <P> POST:  The pizzas and customers fields are set to their initial empty states
 	 */
-	public void resetDetails(){
+	public void resetDetails () {
 		// TO DO
+		customers.clear();
+		pizzas.clear();
 	}
 
 }
