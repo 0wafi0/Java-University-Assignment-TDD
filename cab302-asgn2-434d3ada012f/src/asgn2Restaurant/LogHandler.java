@@ -117,10 +117,7 @@ public class LogHandler {
             }
         } catch (IOException e) {
             throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
-<<<<<<< HEAD
-=======
         }
->>>>>>> 6281e56aa10f7fa4b10f77fe75682f965e4afa78
         return output;
 	}		
 
