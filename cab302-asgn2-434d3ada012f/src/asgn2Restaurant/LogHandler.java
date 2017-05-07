@@ -2,6 +2,7 @@ package asgn2Restaurant;
 
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalTime;
@@ -65,7 +66,6 @@ public class LogHandler {
             }
         } catch (IOException e) {
             throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
-        } catch()
         return output;
 	}		
 
