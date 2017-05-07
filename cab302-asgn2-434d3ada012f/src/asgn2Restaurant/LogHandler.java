@@ -105,11 +105,23 @@ public class LogHandler {
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
 		String[] customerInfo = line.split(",");
+		
+		if (customerInfo.length != 7) {
+			throw new LogHandlerException();
+		}
+		
 		String name = customerInfo[2];
 		String mobileNumber = customerInfo[3];
 		String type = customerInfo[4];
-		int locationX = Integer.parseInt(customerInfo[5]);
-		int locationY = Integer.parseInt(customerInfo[6]);
+		int locationX;
+		int locationY;
+		try {
+			locationX = Integer.parseInt(customerInfo[5]);
+			locationY = Integer.parseInt(customerInfo[6]);
+		}
+		catch (NumberFormatException exception) {
+			throw new CustomerException();
+		} 
 		
 		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
 		
