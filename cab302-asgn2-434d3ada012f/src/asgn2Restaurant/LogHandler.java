@@ -6,10 +6,25 @@ import java.util.ArrayList;
 
 import asgn2Customers.Customer;
 import asgn2Customers.CustomerFactory;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import asgn2Customers.Customer;
+import asgn2Customers.DriverDeliveryCustomer;
+import asgn2Customers.DroneDeliveryCustomer;
+import asgn2Customers.PickUpCustomer;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;
 
 
 
@@ -33,6 +48,7 @@ public class LogHandler {
 	private static String logFile3 = "20170103.txt";
 	
 
+
 	/**
 	 * Returns an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file.
 	 * @param filename The file name of the log file
@@ -41,6 +57,7 @@ public class LogHandler {
 	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
 	 * 
 	 */
+	
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		// TO DO
 		FileInputStream inputStream;
@@ -90,7 +107,17 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
-		// TO DO
+		ArrayList<Pizza> output = new ArrayList<Pizza>();
+        String line = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            while ((line = br.readLine()) != null) {
+            	Pizza temp = createPizza(line);
+            	output.add(temp);
+            }
+        } catch (IOException e) {
+            throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
+        }
+        return output;
 	}		
 
 	
@@ -137,7 +164,32 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		// TO DO		
+		Pizza temp;
+		String[] data = line.split(",");
+        if(data == null) {
+        	throw new LogHandlerException("Error detected in the log");
+        }
+        if(data.length != 9) {
+        	throw new LogHandlerException("Error detected in the log");
+        }
+        for(int i = 0; i < 2; i++) {
+        	if(data[i] == "") {
+        		throw new LogHandlerException("Error detected in the log");
+        	}
+        }
+        for(int i = 7; i < 9; i++) {
+        	if(data[i] == "") {
+        		throw new LogHandlerException("Error detected in the log");
+        	}
+        }
+        try {
+        	temp = PizzaFactory.getPizza(data[7], Integer.parseInt(data[8]), LocalTime.parse(data[0]), LocalTime.parse(data[1]));
+        } catch(NumberFormatException a) {
+        	throw new LogHandlerException("Problem parsing the quantity of pizzas from logfile");
+        } catch(DateTimeParseException a) {
+        	throw new LogHandlerException("Problem parsing the Time from logfile");        
+        }
+        return temp;
 	}
-
+	
 }
