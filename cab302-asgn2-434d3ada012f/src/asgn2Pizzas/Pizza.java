@@ -20,47 +20,13 @@ public abstract class Pizza  {
 	/**
 	 *  Declare private variables
      * */	
-	private int _quantity;
-	private LocalTime _orderTime;
-	private LocalTime _deliveryTime;
-	private String _type;
-	private double _price;
-	private double _cost;
-	private ArrayList<PizzaTopping> _toppings;
-	
-	private final int MAX_PIZZAS = 10;
-	private final int MIN_PIZZAS = 1;
-	private final int MIN_MINUTES = 10;
-	private final int MAX_HOURS = 1;
-	private final int EARLIEST_HOUR = 19;
-	private final int LATEST_HOUR = 23;
-	
-	private final String MARGHERITA = "margherita";
-	private final String MEAT_LOVERS = "meat lover";
-	private final String VEGETARIAN = "vegetarian";
-	
-	
-	private void addToppings () {
-		if(_type.equals(MARGHERITA)) {
-			_toppings.add(PizzaTopping.CHEESE);
-			_toppings.add(PizzaTopping.TOMATO);
-		}
-		else if(_type.equals(VEGETARIAN)) {
-			_toppings.add(PizzaTopping.CHEESE);
-			_toppings.add(PizzaTopping.TOMATO);
-			_toppings.add(PizzaTopping.EGGPLANT);
-			_toppings.add(PizzaTopping.MUSHROOM);
-			_toppings.add(PizzaTopping.CAPSICUM);
-		}
-		else if(_type.equals(MEAT_LOVERS)) {
-			_toppings.add(PizzaTopping.CHEESE);
-			_toppings.add(PizzaTopping.TOMATO);
-			_toppings.add(PizzaTopping.BACON);
-			_toppings.add(PizzaTopping.PEPPERONI);
-			_toppings.add(PizzaTopping.SALAMI);
-		}
-	}
-	
+	int _quantity;
+	LocalTime _orderTime;
+	LocalTime _deliveryTime;
+	String _type;
+	double _price;
+	double _cost;
+	ArrayList<PizzaTopping> _toppings;
 	
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
@@ -79,30 +45,23 @@ public abstract class Pizza  {
 	 * @throws PizzaException if supplied parameters are invalid 
 	 */ 	
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
-		
-		if(quantity > MAX_PIZZAS || quantity < MIN_PIZZAS) {
+		_quantity = quantity;
+		if(quantity > 10 || quantity < 1) {
 			throw new PizzaException("Invalid number of pizzas");
 		}
-		if(!(type.equals(MARGHERITA)) && !(type.equals(VEGETARIAN)) && !(type.equals(MEAT_LOVERS))) {
+		if(!(type == "margherita") && !(type == "vegetarian") && !(type == "meat lover")) {
 			throw new PizzaException("Invalid type of pizza");
 		}
-		if(orderTime.isAfter(deliveryTime) || ChronoUnit.MINUTES.between(orderTime, deliveryTime) < MIN_MINUTES || ChronoUnit.HOURS.between(orderTime, deliveryTime) >= MAX_HOURS) {
+		if(orderTime.isAfter(deliveryTime) || ChronoUnit.MINUTES.between(orderTime, deliveryTime) < 10 || ChronoUnit.HOURS.between(orderTime, deliveryTime) >= 1) {
 			throw new PizzaException("Invalid delivery time!");
 		}
-		if(orderTime.getHour() < EARLIEST_HOUR || orderTime.getHour() >= LATEST_HOUR) {
+		if(orderTime.getHour() < 19) {
 			throw new PizzaException("Invalid order time!!");
 		}
-		
-		_quantity = quantity;
-		_toppings = new ArrayList<PizzaTopping>();
 		_orderTime = orderTime;
 		_deliveryTime = deliveryTime;
 		_type = type;
 		_price = price;
-		
-		calculateCostPerPizza();
-		
-		addToppings();
 	}
 
 	/**
@@ -112,14 +71,35 @@ public abstract class Pizza  {
 	 * <P> POST: The cost field is set to sum of the Pizzas's toppings
 	 */
 	public final void calculateCostPerPizza(){
-		if(_type.equals(MARGHERITA)) {
-			_cost = PizzaTopping.TOMATO.getCost() + PizzaTopping.CHEESE.getCost();
+		if(_type == "margherita") {
+			_cost += PizzaTopping.TOMATO.getCost();
+			_cost += PizzaTopping.CHEESE.getCost();
+			_toppings.add(PizzaTopping.CHEESE);
+			_toppings.add(PizzaTopping.TOMATO);
 		}
-		else if(_type.equals(VEGETARIAN)) {
-			_cost = PizzaTopping.TOMATO.getCost() + PizzaTopping.CHEESE.getCost() + PizzaTopping.EGGPLANT.getCost() + PizzaTopping.MUSHROOM.getCost() + PizzaTopping.CAPSICUM.getCost();
+		else if(_type == "vegetarian") {
+			_cost += PizzaTopping.TOMATO.getCost();
+			_cost += PizzaTopping.CHEESE.getCost();
+			_cost += PizzaTopping.EGGPLANT.getCost();
+			_cost += PizzaTopping.MUSHROOM.getCost();
+			_cost += PizzaTopping.CAPSICUM.getCost();
+			_toppings.add(PizzaTopping.CHEESE);
+			_toppings.add(PizzaTopping.TOMATO);
+			_toppings.add(PizzaTopping.EGGPLANT);
+			_toppings.add(PizzaTopping.MUSHROOM);
+			_toppings.add(PizzaTopping.CAPSICUM);
 		}
-		else if(_type.equals(MEAT_LOVERS)) {
-			_cost = PizzaTopping.TOMATO.getCost() + PizzaTopping.CHEESE.getCost() + PizzaTopping.BACON.getCost() + PizzaTopping.PEPPERONI.getCost() + PizzaTopping.SALAMI.getCost();	
+		else if(_type == "meat lover") {
+			_cost += PizzaTopping.TOMATO.getCost();
+			_cost += PizzaTopping.CHEESE.getCost();
+			_cost += PizzaTopping.BACON.getCost();
+			_cost += PizzaTopping.PEPPERONI.getCost();
+			_cost += PizzaTopping.SALAMI.getCost();	
+			_toppings.add(PizzaTopping.CHEESE);
+			_toppings.add(PizzaTopping.TOMATO);
+			_toppings.add(PizzaTopping.BACON);
+			_toppings.add(PizzaTopping.PEPPERONI);
+			_toppings.add(PizzaTopping.SALAMI);
 		}
 	}
 	
@@ -144,7 +124,7 @@ public abstract class Pizza  {
 	 * @return The amount that the entire order costs to make, taking into account the type and quantity of pizzas. 
 	 */
 	public final double getOrderCost(){
-		return _cost * _quantity;
+		return _cost*_quantity;
 	}
 	
 	/**
@@ -152,7 +132,7 @@ public abstract class Pizza  {
 	 * @return The amount that the entire order is sold to the customer, taking into account the type and quantity of pizzas. 
 	 */
 	public final double getOrderPrice(){
-		return _price * _quantity;
+		return _price*_quantity;
 	}
 	
 	
