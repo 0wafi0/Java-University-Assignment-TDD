@@ -40,12 +40,11 @@ public abstract class Customer {
 	
 	
 	private boolean allNumeric (String string) {
-		boolean numeric = true;
-		
+		boolean numeric = true;		
 		for (int i = 0; i < string.length(); i++) {
 			char currentChar = string.charAt(i);
 			// If it is out of range of 0 - 9 in ASCII table, then it is not numeric
-			numeric &= (currentChar < '0' || currentChar > '9');
+			numeric &= (currentChar > '0' || currentChar < '9');
 		}
 		
 		return numeric;
@@ -74,7 +73,7 @@ public abstract class Customer {
 		}
 		
 		// Ensure location ISN'T 0,0 when type is delivery
-		if ((type.equals(DRONE_DELIVER) || type.equals(DRIVER_DELIVER)) && (locationX == 0 && locationY == 0)) {
+ 		if ((type.equals(DRONE_DELIVER) || type.equals(DRIVER_DELIVER)) && (locationX == 0 && locationY == 0)) {
 			throw new CustomerException();
 		}
 		// Ensure locationX and locationY are both less than or equal to 10
