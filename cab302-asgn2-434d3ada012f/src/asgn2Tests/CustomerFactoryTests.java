@@ -12,7 +12,7 @@ import asgn2Pizzas.Pizza;
 /**
  * A class the that tests the asgn2Customers.CustomerFactory class.
  * 
- * @author Person A
+ * @author Wafi Hossain
  *
  */
 public class CustomerFactoryTests {
@@ -30,7 +30,7 @@ public class CustomerFactoryTests {
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException2() throws CustomerException {
-		CustomerFactory.getCustomer("PUC", "Scott", "asfas32233", 0, 0);
+		CustomerFactory.getCustomer("PUC", "Scott", "asfas32233", 10, 10);
 	}
 	
 	/**
@@ -85,6 +85,30 @@ public class CustomerFactoryTests {
 	 * test for coordinate exceptions for DNC
 	 */
 	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException14() throws CustomerException {
+		CustomerFactory.getCustomer("DNC", "lalalalalalalalalala", "0582342341", 11, 11);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DNC
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException15() throws CustomerException {
+		CustomerFactory.getCustomer("DNC", "lalalalalalalalalala", "0582342341", 11, 0);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DNC
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException16() throws CustomerException {
+		CustomerFactory.getCustomer("DNC", "lalalalalalalalalala", "0582342341", 2, 11);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DNC
+	 */
+	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException9() throws CustomerException {
 		CustomerFactory.getCustomer("DNC", "lalalalalalalalalala", "0582342341", 0, 0);
 	}
@@ -94,7 +118,31 @@ public class CustomerFactoryTests {
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException10() throws CustomerException {
-		CustomerFactory.getCustomer("DNC", "lalalalalalalalalala", "0582342341", 0, 0);
+		CustomerFactory.getCustomer("DVC", "lalalalalalalalalala", "0582342341", 0, 0);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DVC
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException11() throws CustomerException {
+		CustomerFactory.getCustomer("DVC", "lalalalalalalalalala", "0582342341", 11, 0);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DVC
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException12() throws CustomerException {
+		CustomerFactory.getCustomer("DVC", "lalalalalalalalalala", "0582342341", 1, 11);
+	}
+	
+	/**
+	 * test for coordinate exceptions for DVC
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestCostumerFactoryException13() throws CustomerException {
+		CustomerFactory.getCustomer("DVC", "lalalalalalalalalala", "0582342341", 11, 11);
 	}
 	
 	/**

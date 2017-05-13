@@ -8,6 +8,7 @@ import asgn2Customers.Customer;
 import asgn2Customers.CustomerFactory;
 import asgn2Customers.DriverDeliveryCustomer;
 import asgn2Customers.DroneDeliveryCustomer;
+import asgn2Customers.PickUpCustomer;
 import asgn2Exceptions.CustomerException;
 
 /**
@@ -15,7 +16,7 @@ import asgn2Exceptions.CustomerException;
  * asgn2Customers.DroneDeliveryCustomer classes. Note that an instance of asgn2Customers.DriverDeliveryCustomer 
  * should be used to test the functionality of the  asgn2Customers.Customer abstract class. 
  * 
- * @author Person A
+ * @author Wafi Hossain
  * 
  *
  */
@@ -82,15 +83,40 @@ public class CustomerTests {
 	}
 	
 	/**
+	 * Invalid Coordinates x 11
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestConsumerException8() throws CustomerException {
+		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 11, 0);
+	}
+	
+	/**
+	 * Invalid Coordinates y 11
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestConsumerException10() throws CustomerException {
+		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 2, 11);
+	}
+	
+	/**
+	 * Invalid Coordinates all 11
+	 */
+	@Test(expected = CustomerException.class)
+	public void TestConsumerException11() throws CustomerException {
+		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 11, 11);
+	}
+	
+	/**
 	 * General testing of the abstract Customer class using DriverDeliveryClass
+	 * This test will also test the 
 	 */
 	@Test
 	public void GeneralTestAbstractCustomerClass() throws CustomerException {
-		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
+		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 10, 10);
 		Customer temp1 = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
 		assertTrue(temp.equals(temp1));
-		assertEquals(temp.getLocationX(), 8);
-		assertEquals(temp.getLocationY(), 8);
+		assertEquals(temp.getLocationX(), 10);
+		assertEquals(temp.getLocationY(), 10);
 		assertEquals(temp.getCustomerType(), "DVC");
 		assertEquals(temp.getMobileNumber(), "0232146594");
 		assertEquals(temp.getName(), "Wafi");
@@ -108,7 +134,199 @@ public class CustomerTests {
 	 */
 	@Test
 	public void GeneralTestDriverDeliveryCustomer() throws CustomerException {
-		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
-		assertEquals(temp.getCustomerType(), "DVC");		
+		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 10);
+		assertEquals(temp.getCustomerType(), "DVC");
+		assertEquals(temp.getDeliveryDistance(), 18, 0);			
+		assertEquals(temp.getLocationX(), 8);
+		assertEquals(temp.getLocationY(), 10);
 	}
+	
+	/**
+	 * Following will test the the DroneDeliveryCustomer class
+	 */
+	@Test
+	public void GeneralTestDroneDeliveryCustomer() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146594", 10, 3);
+		assertEquals(temp.getDeliveryDistance(), Math.sqrt(4+9), 0);		
+		assertEquals(temp.getCustomerType(), "DNC");
+		assertEquals(temp.getMobileNumber(), "0232146594");
+		assertEquals(temp.getName(), "Wafi");
+		assertEquals(temp.getLocationX(), 2);
+		assertEquals(temp.getLocationY(), 3);
+	}
+	
+	/**
+	 * Following will test the the DroneDeliveryCustomer class
+	 */
+	@Test
+	public void GeneralTestPickUpCustomer() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "0232146594", 0, 0);
+		assertEquals(temp.getDeliveryDistance(), 0, 0);		
+		assertEquals(temp.getCustomerType(), "PUC");
+		assertEquals(temp.getMobileNumber(), "0232146594");
+		assertEquals(temp.getName(), "Wafi");
+		assertEquals(temp.getLocationX(), 0);
+		assertEquals(temp.getLocationY(), 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery1() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146594", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery2() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("", "0232146594", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery3() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("   ", "0232146594", 10, 10);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery4() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("aDEREQWREWQRWFSADFWQERWERQWE	QW   ", "0232146594", 2, 8);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery5() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "023214659", 10, 10);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery6() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146593234323", 2, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery7() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146593234323", 11, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery8() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146593234323", 11, 11);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestDroneDelivery9() throws CustomerException {
+		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146593234323", 3, 11);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer1() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "0232146594", 5, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer2() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "0232146594", 0, 2);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer3() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "0232146594", 2, 2);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer4() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "02321465943", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer5() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "02321465", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer6() throws CustomerException {
+		Customer temp = new PickUpCustomer("Wafi", "4232146513", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer7() throws CustomerException {
+		Customer temp = new PickUpCustomer("", "0232146513", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer8() throws CustomerException {
+		Customer temp = new PickUpCustomer("ASDFEWQRQEDFSDAGFSDGFDHFHER", "0232146513", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer9() throws CustomerException {
+		Customer temp = new PickUpCustomer("ASDFEWQRQEDFSDAGFSDGFDHFHER", "0232146513", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer10() throws CustomerException {
+		Customer temp = new PickUpCustomer(" ", "0232146513", 0, 0);
+	}
+	
+	/**
+	 * Conduct more exception tests for the various classes
+	 */
+	@Test(expected = CustomerException.class)
+	public void ExceptionTestPickuUpCustomer11() throws CustomerException {
+		Customer temp = new PickUpCustomer("23weqewsadasd341saffa", "0232146513", 0, 0);
+	}
+	
 }
