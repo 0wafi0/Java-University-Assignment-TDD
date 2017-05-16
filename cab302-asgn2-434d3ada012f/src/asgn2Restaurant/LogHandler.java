@@ -56,8 +56,7 @@ public class LogHandler {
 	 * @return an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file. 
 	 * @throws CustomerException If the log file contains semantic errors leading that violate the customer constraints listed in Section 5.3 of the Assignment Specification or contain an invalid customer code (passed by another class).
 	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
-	 */
-	
+	 */	
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		// TO DO
 		FileInputStream inputStream;
@@ -66,10 +65,10 @@ public class LogHandler {
 		String line;
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		
+		//Not sure if this bit of exception is to be thrown.
 		if (!filename.equals(logFile1) && !filename.equals(logFile2) && !filename.equals(logFile3)) {
 			throw new LogHandlerException();
 		}
-		
 		try {
 			inputStream = new FileInputStream(filename);
 			streamReader = new InputStreamReader(inputStream);
@@ -133,9 +132,17 @@ public class LogHandler {
 		// TO DO
 		String[] customerInfo = line.split(",");
 		
-		if (customerInfo.length != 7) {
-			throw new LogHandlerException();
-		}
+		if(customerInfo == null) {
+        	throw new LogHandlerException("Error detected in the log");
+        }
+        if(customerInfo.length != 9) {
+        	throw new LogHandlerException("Error detected in the log");
+        }
+        for(int i = 0; i < 2; i++) {
+        	if(customerInfo[i] == "") {
+        		throw new LogHandlerException("Error detected in the log");
+        	}
+        }
 		
 		String name = customerInfo[2];
 		String mobileNumber = customerInfo[3];
@@ -147,7 +154,7 @@ public class LogHandler {
 			locationY = Integer.parseInt(customerInfo[6]);
 		}
 		catch (NumberFormatException exception) {
-			throw new CustomerException();
+			throw new LogHandlerException("can't parse integer values for coordinates");
 		} 
 		
 		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
