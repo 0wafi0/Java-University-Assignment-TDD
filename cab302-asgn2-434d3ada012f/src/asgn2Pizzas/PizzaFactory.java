@@ -29,16 +29,16 @@ public class PizzaFactory {
 	 * @return A valid Pizza object using the specified parameters 
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
-		if(pizzaCode == "PZM") {
+		if(pizzaCode.equals("PZM")) {
 			Pizza output = new MargheritaPizza(quantity, orderTime, deliveryTime);
 			return output;
 		}
-		else if(pizzaCode == "PZV") {
+		else if(pizzaCode.equals("PZV")) {
 			Pizza output = new VegetarianPizza(quantity, orderTime, deliveryTime);
 			return output;
 		}
-		else if(pizzaCode == "PZL") {
-			Pizza output = new VegetarianPizza(quantity, orderTime, deliveryTime);
+		else if(pizzaCode.equals("PZL")) {
+			Pizza output = new MeatLoversPizza(quantity, orderTime, deliveryTime);
 			return output;
 		}else {
 			throw new PizzaException("invalid Pizza code");

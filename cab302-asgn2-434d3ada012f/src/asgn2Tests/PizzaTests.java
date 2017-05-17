@@ -26,6 +26,7 @@ import java.time.LocalTime;
 public class PizzaTests {
 	// TO DO
 	
+	//---------------------------------------
 	// Testing too many pizzas
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
@@ -66,8 +67,8 @@ public class PizzaTests {
 	public void pizzaTooLate () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
 	}
-	//---------------------------------------
 	
+	//---------------------------------------
 	// Order before opening hours
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
@@ -76,34 +77,32 @@ public class PizzaTests {
 	}
 	
 	//---------------------------------------
-	
 	// Order after delivery hours
-	
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
 	public void orderAfterHours () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(23, 30), LocalTime.of(23, 50));
 	}
-	//---------------------------------------
 	
+	//---------------------------------------
 	// Order before 11 but delivery is after 11
-	
 	//---------------------------------------
-	@Test (expected = PizzaException.class)
-	public void orderLegitButDeliveryUnlegitSoIMustQuit () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 30), LocalTime.of(18, 50));
+	@Test
+	public void orderTimeLegitButDeliveryTimeUnlegitButIKeepGoingBecauseImAGymnast () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(22, 30), LocalTime.of(23, 20));
 	}
+	
 	//---------------------------------------
-	
 	// Delivery after 7 but order before 7
-	
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
-	public void deliveryLegitButOrderUnlegitSoIMustQuit () throws PizzaException {
+	public void deliveryLegitButOrderTimeUnlegitSoIMustQuit () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 55), LocalTime.of(19, 20));
 	}
 	
-	
+	//---------------------------------------
+	// getPizzaType()
+	//---------------------------------------
 	@Test
 	public void successfulPizzaType () throws PizzaException {
 		VegetarianPizza pizza1 = new VegetarianPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
@@ -116,6 +115,9 @@ public class PizzaTests {
 		assertEquals(pizza3.getPizzaType(), "margherita");
 	}
 	
+	//---------------------------------------
+	// equals()
+	//---------------------------------------
 	@Test
 	public void pizzasAreNotAllSame () throws PizzaException {
 		VegetarianPizza pizza1 = new VegetarianPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
@@ -124,7 +126,9 @@ public class PizzaTests {
 		assertFalse(pizza1.equals(pizza2));
 	}
 	
-	
+	//---------------------------------------
+	// getQuantity()
+	//---------------------------------------
 	@Test
 	public void correctNumPizzas () throws PizzaException {
 		VegetarianPizza pizza1 = new VegetarianPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
@@ -135,6 +139,7 @@ public class PizzaTests {
 		assertEquals(pizza2.getQuantity(), 4);
 		assertEquals(pizza3.getQuantity(), 2);
 	}
+	
 	
 	@Test
 	public void pizzasContainCorrectToppings () throws PizzaException {
@@ -164,6 +169,7 @@ public class PizzaTests {
 	}
 	
 	
+	
 	@Test
 	public void pizzasAreCorrectPrice () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
@@ -175,6 +181,7 @@ public class PizzaTests {
 		MeatLoversPizza pizza3 = new MeatLoversPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		assertTrue(pizza3.getPricePerPizza() == 12);
 	}
+	
 	
 	@Test
 	public void pizzasAreCorrectCost () throws PizzaException {

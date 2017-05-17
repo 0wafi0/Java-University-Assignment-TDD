@@ -43,9 +43,9 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
-	private static String logFile1 = "20170101.txt";
-	private static String logFile2 = "20170102.txt";
-	private static String logFile3 = "20170103.txt";
+	private static String logFile1 = "logs/20170101.txt";
+	private static String logFile2 = "logs/20170102.txt";
+	private static String logFile3 = "logs/20170103.txt";
 	
 
 
@@ -75,10 +75,11 @@ public class LogHandler {
 			streamReader = new InputStreamReader(inputStream);
 			bufferReader = new BufferedReader(streamReader);
 			
+			line = bufferReader.readLine();
 			do {
-				line = bufferReader.readLine();
 				Customer customer = createCustomer(line);
 				customerDataset.add(customer);
+				line = bufferReader.readLine();
 			} while (line != null);
 			
 			inputStream.close();
@@ -133,7 +134,7 @@ public class LogHandler {
 		// TO DO
 		String[] customerInfo = line.split(",");
 		
-		if (customerInfo.length != 7) {
+		if (customerInfo.length != 9) {
 			throw new LogHandlerException();
 		}
 		
@@ -166,19 +167,17 @@ public class LogHandler {
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
 		Pizza temp;
 		String[] data = line.split(",");
-        if(data == null) {
-        	throw new LogHandlerException("Error detected in the log");
-        }
+		
         if(data.length != 9) {
         	throw new LogHandlerException("Error detected in the log");
         }
         for(int i = 0; i < 2; i++) {
-        	if(data[i] == "") {
+        	if(data[i].equals("")) {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }
         for(int i = 7; i < 9; i++) {
-        	if(data[i] == "") {
+        	if(data[i].equals("")) {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }

@@ -45,7 +45,7 @@ public abstract class Customer {
 		for (int i = 0; i < string.length(); i++) {
 			char currentChar = string.charAt(i);
 			// If it is out of range of 0 - 9 in ASCII table, then it is not numeric
-			numeric &= (currentChar < '0' || currentChar > '9');
+			numeric &= (currentChar > '0' || currentChar < '9');
 		}
 		
 		return numeric;
