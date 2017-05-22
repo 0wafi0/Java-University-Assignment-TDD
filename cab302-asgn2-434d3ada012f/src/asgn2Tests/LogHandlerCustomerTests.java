@@ -1,11 +1,16 @@
 package asgn2Tests;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
 import asgn2Customers.DriverDeliveryCustomer;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
+import asgn2Pizzas.PizzaFactory;
 import asgn2Restaurant.LogHandler;
 
 /**
@@ -13,12 +18,7 @@ import asgn2Restaurant.LogHandler;
  *
  * @author WAfi
  */
-public class LogHandlerCustomerTests {
-	/**
-	 * The first portion of these tests are going to check
-	 * the functionality of create customer
-	 */
-	
+public class LogHandlerCustomerTests {	
 	/**
 	 * Following will be testing exceptions for LongHandler.createCustomer
 	 */
@@ -31,13 +31,216 @@ public class LogHandlerCustomerTests {
 	public void TestCreateCustomerException1() throws LogHandlerException, CustomerException {
 		LogHandler.createCustomer("");
 	}
-	
+	 
 	/**
-	 * Empty string
+	 * Try one of the lines from the Logfiles without a couple of entries
 	 * @throws CustomerException 
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException2() throws LogHandlerException, CustomerException {
-		LogHandler.createCustomer("");
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,");
 	}
+	
+	/**
+	 * Try one of the lines from the Logfiles replace the y coordinate with a letter
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void TestCreateCustomerException3() throws LogHandlerException, CustomerException {
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,a,PZV,2");
+	}
+	
+	/**
+	 * Try one of the lines from the Logfiles replace one of the y coordinate with a number and letters
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void TestCreateCustomerException4() throws LogHandlerException, CustomerException {
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,8asdw,PZV,2");
+	}
+	
+	/**
+	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void TestCreateCustomerException5() throws LogHandlerException, CustomerException {
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,a,8,PZV,2");
+	}
+	
+	/**
+	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void TestCreateCustomerException6() throws LogHandlerException, CustomerException {
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,sad6asfef,8,PZV,2");
+	}
+	
+	/**
+	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void TestCreateCustomerException7() throws LogHandlerException, CustomerException {
+		LogHandler.createCustomer("19:00:00,19:20:00,Casey Jones,0123456789,DVC,f,1,PZV,2");
+	}	
+	
+	/**
+	 * Now we are to test the function with general test cases
+	 */	
+	
+	/**
+	 * Test CreateCustomer with a DVC test case
+	 * @throws CustomerException 
+	 */
+	@Test
+	public void TestCreateCustomerGeneral1() throws LogHandlerException, CustomerException {
+		Customer temp1 = LogHandler.createCustomer("19:00:00,19:20:00,sadfsfswerwqrqrqwrsg,0134563231,DVC,10,10,DVC,2");
+		Customer temp2 =  CustomerFactory.getCustomer("DVC", "sadfsfswerwqrqrqwrsg", "0134563231", 10, 10);
+		assertTrue(temp1.equals(temp2));
+	}
+	
+	/**
+	 * Test CreateCustomer with a DVC test case
+	 * @throws CustomerException 
+	 */
+	@Test
+	public void TestCreateCustomerGeneral2() throws LogHandlerException, CustomerException {
+		Customer temp1 = LogHandler.createCustomer("19:00:00,19:20:00,Mosquito,0134563231,DNC,8,10,DVC,2");
+		Customer temp2 =  CustomerFactory.getCustomer("DNC", "Mosquito", "0134563231", 8, 10);
+		assertTrue(temp1.equals(temp2));
+	}	
+	
+	/**
+	 * Following will be testing exceptions for LongHandler.populateCustomerDataset()
+	 */
+	
+	/**
+	 * No File
+	 * @throws CustomerException 
+	 */
+	@Test(expected = LogHandlerException.class)
+	public void populateCustomerDatasetException1() throws LogHandlerException, CustomerException {
+		LogHandler.populateCustomerDataset("asdfawetqwer");
+	}
+	
+	/**
+	 * Test with the 20170101.txt
+	 * @throws CustomerException 
+	 */
+	@Test
+	public void populateCustomerDatasetGeneralTestCase1() throws LogHandlerException, CustomerException {				
+		ArrayList<Customer> temp = new ArrayList<Customer>();
+		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170101.txt");
+		assertTrue(temp.size() == 3);
+		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
+		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(2).getCustomerType().equals("PUC"));
+		assertTrue(temp.get(0).getName().equals("Casey Jones"));
+		assertTrue(temp.get(1).getName().equals("April O'Neal"));
+		assertTrue(temp.get(2).getName().equals("Oroku Saki"));
+		assertEquals(temp.get(0).getLocationX(), 5);
+		assertEquals(temp.get(0).getLocationY(), 5);
+		assertEquals(temp.get(1).getLocationX(), 3);
+		assertEquals(temp.get(1).getLocationY(), 4);
+	}
+	
+	/**
+	 * Test with the 20170102.txt
+	 * @throws CustomerException 
+	 */
+	@Test
+	public void populateCustomerDatasetGeneralTestCase2() throws LogHandlerException, CustomerException {				
+		ArrayList<Customer> temp = new ArrayList<Customer>();
+		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170102.txt");
+		assertTrue(temp.size() == 10);
+		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
+		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(2).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(3).getCustomerType().equals("PUC"));
+		assertTrue(temp.get(4).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(5).getCustomerType().equals("PUC"));
+		assertTrue(temp.get(6).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(7).getCustomerType().equals("DNC"));
+		assertTrue(temp.get(8).getCustomerType().equals("DVC"));
+		assertTrue(temp.get(9).getCustomerType().equals("PUC"));
+		
+		assertTrue(temp.get(0).getName().equals("Emma Brown"));
+		assertTrue(temp.get(1).getName().equals("Lucas Anderson"));
+		assertTrue(temp.get(2).getName().equals("Sophia Singh"));
+		assertTrue(temp.get(3).getName().equals("Bella Chen"));
+		assertTrue(temp.get(4).getName().equals("Sophia Brown"));
+		assertTrue(temp.get(5).getName().equals("Eli Wang"));
+		assertTrue(temp.get(6).getName().equals("Riley Brown"));
+		assertTrue(temp.get(7).getName().equals("Emma Chen"));
+		assertTrue(temp.get(8).getName().equals("Jackson Taylor"));
+		assertTrue(temp.get(9).getName().equals("Caden Kumar"));
+		
+		assertEquals(temp.get(0).getLocationX(), -1);
+		assertEquals(temp.get(0).getLocationY(), 0);
+		assertEquals(temp.get(1).getLocationX(), -4);
+		assertEquals(temp.get(1).getLocationY(), 5);
+		assertEquals(temp.get(2).getLocationX(), 1);
+		assertEquals(temp.get(2).getLocationY(), 8);
+		assertEquals(temp.get(4).getLocationX(), -2);
+		assertEquals(temp.get(4).getLocationY(), 4);
+		assertEquals(temp.get(6).getLocationX(), -2);
+		assertEquals(temp.get(6).getLocationY(), 0);
+		assertEquals(temp.get(7).getLocationX(), -4);
+		assertEquals(temp.get(7).getLocationY(), 2);
+		assertEquals(temp.get(8).getLocationX(), -5);
+		assertEquals(temp.get(8).getLocationY(), -10);
+		
+	}
+	
+	/**
+	 * Test with the 20170102.txt
+	 * @throws CustomerException 
+	 */
+	@Test
+	public void populateCustomerDatasetGeneralTestCase3() throws LogHandlerException, CustomerException {				
+//		ArrayList<Customer> temp = new ArrayList<Customer>();
+//		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170102.txt");
+//		assertTrue(temp.size() == 10);
+//		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
+//		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
+//		assertTrue(temp.get(2).getCustomerType().equals("DNC"));
+//		assertTrue(temp.get(3).getCustomerType().equals("PUC"));
+//		assertTrue(temp.get(4).getCustomerType().equals("DNC"));
+//		assertTrue(temp.get(5).getCustomerType().equals("PUC"));
+//		assertTrue(temp.get(6).getCustomerType().equals("DNC"));
+//		assertTrue(temp.get(7).getCustomerType().equals("DNC"));
+//		assertTrue(temp.get(8).getCustomerType().equals("DVC"));
+//		assertTrue(temp.get(9).getCustomerType().equals("PUC"));
+//		
+//		assertTrue(temp.get(0).getName().equals("Emma Brown"));
+//		assertTrue(temp.get(1).getName().equals("Lucas Anderson"));
+//		assertTrue(temp.get(2).getName().equals("Sophia Singh"));
+//		assertTrue(temp.get(3).getName().equals("Bella Chen"));
+//		assertTrue(temp.get(4).getName().equals("Sophia Brown"));
+//		assertTrue(temp.get(5).getName().equals("Eli Wang"));
+//		assertTrue(temp.get(6).getName().equals("Riley Brown"));
+//		assertTrue(temp.get(7).getName().equals("Emma Chen"));
+//		assertTrue(temp.get(8).getName().equals("Jackson Taylor"));
+//		assertTrue(temp.get(9).getName().equals("Caden Kumar"));
+//		
+//		assertEquals(temp.get(0).getLocationX(), -1);
+//		assertEquals(temp.get(0).getLocationY(), 0);
+//		assertEquals(temp.get(1).getLocationX(), -4);
+//		assertEquals(temp.get(1).getLocationY(), 5);
+//		assertEquals(temp.get(2).getLocationX(), 1);
+//		assertEquals(temp.get(2).getLocationY(), 8);
+//		assertEquals(temp.get(4).getLocationX(), -2);
+//		assertEquals(temp.get(4).getLocationY(), 4);
+//		assertEquals(temp.get(6).getLocationX(), -2);
+//		assertEquals(temp.get(6).getLocationY(), 0);
+//		assertEquals(temp.get(7).getLocationX(), -4);
+//		assertEquals(temp.get(7).getLocationY(), 2);
+//		assertEquals(temp.get(8).getLocationX(), -5);
+//		assertEquals(temp.get(8).getLocationY(), -10);
+		
+	}
+	
+	
 }

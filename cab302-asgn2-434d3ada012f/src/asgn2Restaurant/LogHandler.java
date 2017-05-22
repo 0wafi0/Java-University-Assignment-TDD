@@ -44,10 +44,6 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
-	private static String logFile1 = "20170101.txt";
-	private static String logFile2 = "20170102.txt";
-	private static String logFile3 = "20170103.txt";
-	
 
 
 	/**
@@ -58,42 +54,34 @@ public class LogHandler {
 	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
 	 */	
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
-		// TO DO
-		FileInputStream inputStream;
-		BufferedReader bufferReader;
-		InputStreamReader streamReader;
-		String line;
+		String line = "";
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
-		
-		//Not sure if this bit of exception is to be thrown.
-		if (!filename.equals(logFile1) && !filename.equals(logFile2) && !filename.equals(logFile3)) {
-			throw new LogHandlerException();
-		}
 		try {
-			inputStream = new FileInputStream(filename);
-			streamReader = new InputStreamReader(inputStream);
-			bufferReader = new BufferedReader(streamReader);
-			
-			do {
+			FileInputStream inputStream = new FileInputStream(filename);
+			InputStreamReader streamReader = new InputStreamReader(inputStream);
+			BufferedReader bufferReader= new BufferedReader(streamReader);
+			while(true) {		
 				line = bufferReader.readLine();
-				Customer customer = createCustomer(line);
-				customerDataset.add(customer);
-			} while (line != null);
-			
+				if(line != null) {
+					Customer customer = createCustomer(line);
+					customerDataset.add(customer);
+				}
+				else {
+					break;
+				}
+				
+			}
 			inputStream.close();
 			bufferReader.close();
 			streamReader.close();
-			
+			if(customerDataset.isEmpty()){
+				throw new LogHandlerException("File is empty");
+			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("This happens when 'filename' is invalid");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("This happens when 'bufferReader' throws an exception");
+			throw new LogHandlerException("No File");
+		} catch (IOException e) {								
+			throw new LogHandlerException("IO error");
 		}
-		
 		return customerDataset;
 	}		
 
@@ -113,6 +101,9 @@ public class LogHandler {
             	Pizza temp = createPizza(line);
             	output.add(temp);
             }
+			if( output.isEmpty()){
+				throw new LogHandlerException("File is empty");
+			}
         } catch (IOException e) {
             throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
         }
@@ -139,7 +130,7 @@ public class LogHandler {
         	throw new LogHandlerException("Error detected in the log");
         }
         for(int i = 0; i < 2; i++) {
-        	if(customerInfo[i] == "") {
+        	if(customerInfo[i].equals("")) {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }
@@ -180,12 +171,12 @@ public class LogHandler {
         	throw new LogHandlerException("Error detected in the log");
         }
         for(int i = 0; i < 2; i++) {
-        	if(data[i] == "") {
+        	if(data[i].equals("")) {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }
         for(int i = 7; i < 9; i++) {
-        	if(data[i] == "") {
+        	if(data[i].equals("")) {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }

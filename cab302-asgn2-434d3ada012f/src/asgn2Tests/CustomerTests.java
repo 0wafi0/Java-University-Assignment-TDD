@@ -113,7 +113,7 @@ public class CustomerTests {
 	@Test
 	public void GeneralTestAbstractCustomerClass() throws CustomerException {
 		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 10, 10);
-		Customer temp1 = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 8);
+		Customer temp1 = new DriverDeliveryCustomer("Wafi", "0232146594", 10, 10);
 		assertTrue(temp.equals(temp1));
 		assertEquals(temp.getLocationX(), 10);
 		assertEquals(temp.getLocationY(), 10);
@@ -147,11 +147,11 @@ public class CustomerTests {
 	@Test
 	public void GeneralTestDroneDeliveryCustomer() throws CustomerException {
 		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146594", 10, 3);
-		assertEquals(temp.getDeliveryDistance(), Math.sqrt(4+9), 0);		
+		assertEquals(temp.getDeliveryDistance(), Math.sqrt(100+9), 0);		
 		assertEquals(temp.getCustomerType(), "DNC");
 		assertEquals(temp.getMobileNumber(), "0232146594");
 		assertEquals(temp.getName(), "Wafi");
-		assertEquals(temp.getLocationX(), 2);
+		assertEquals(temp.getLocationX(), 10);
 		assertEquals(temp.getLocationY(), 3);
 	}
 	
