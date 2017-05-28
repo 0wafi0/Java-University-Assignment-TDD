@@ -44,6 +44,13 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
+<<<<<<< HEAD
+=======
+	private static String logFile1 = "logs/20170101.txt";
+	private static String logFile2 = "logs/20170102.txt";
+	private static String logFile3 = "logs/20170103.txt";
+	
+>>>>>>> origin/ScottTests
 
 
 	/**
@@ -57,6 +64,7 @@ public class LogHandler {
 		String line = "";
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		try {
+<<<<<<< HEAD
 			FileInputStream inputStream = new FileInputStream(filename);
 			InputStreamReader streamReader = new InputStreamReader(inputStream);
 			BufferedReader bufferReader= new BufferedReader(streamReader);
@@ -71,6 +79,19 @@ public class LogHandler {
 				}
 				
 			}
+=======
+			inputStream = new FileInputStream(filename);
+			streamReader = new InputStreamReader(inputStream);
+			bufferReader = new BufferedReader(streamReader);
+			
+			line = bufferReader.readLine();
+			do {
+				Customer customer = createCustomer(line);
+				customerDataset.add(customer);
+				line = bufferReader.readLine();
+			} while (line != null);
+			
+>>>>>>> origin/ScottTests
 			inputStream.close();
 			bufferReader.close();
 			streamReader.close();
@@ -123,6 +144,7 @@ public class LogHandler {
 		// TO DO
 		String[] customerInfo = line.split(",");
 		
+<<<<<<< HEAD
 		if(customerInfo == null) {
         	throw new LogHandlerException("Error detected in the log");
         }
@@ -134,6 +156,11 @@ public class LogHandler {
         		throw new LogHandlerException("Error detected in the log");
         	}
         }
+=======
+		if (customerInfo.length != 9) {
+			throw new LogHandlerException();
+		}
+>>>>>>> origin/ScottTests
 		
 		String name = customerInfo[2];
 		String mobileNumber = customerInfo[3];
@@ -164,9 +191,7 @@ public class LogHandler {
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
 		Pizza temp;
 		String[] data = line.split(",");
-        if(data == null) {
-        	throw new LogHandlerException("Error detected in the log");
-        }
+		
         if(data.length != 9) {
         	throw new LogHandlerException("Error detected in the log");
         }

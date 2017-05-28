@@ -1,7 +1,9 @@
 package asgn2Restaurant;
 import java.util.ArrayList;
+
 import asgn2Customers.Customer;
 import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 
@@ -54,6 +56,10 @@ public class PizzaRestaurant {
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
 		// TO DO
+		customers = LogHandler.populateCustomerDataset(filename);
+		pizzas = LogHandler.populatePizzaDataset(filename);
+		
+		return true;
 	}
 
 	/**
@@ -125,7 +131,6 @@ public class PizzaRestaurant {
 	 * 
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
-
 	public double getTotalProfit(){
 		double output = 0;
 		for(int i = 0; i < pizzas.size(); i++) {
