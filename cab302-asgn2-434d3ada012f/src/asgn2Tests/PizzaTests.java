@@ -33,55 +33,76 @@ public class PizzaTests {
 	public void tooManyPizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(11, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
+	
+	//---------
+	// Almost too many pizzas
+	//---------
+	@Test
+	public void almostTooManyPizzas () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(9, LocalTime.of(20, 5), LocalTime.of(20, 30));
+	}
 
 	//---------------------------------------
-	
 	// Testing too few pizzas
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
 	public void tooFewPizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
+	
+	//----------
+	// Testing negative pizzas
+	//----------
+	@Test (expected = PizzaException.class)
+	public void negativePizzas () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(-5, LocalTime.of(20, 5), LocalTime.of(20, 30));
+	}
+	
+	
 	//---------------------------------------
-	
-	
 	// Ordering an invalid type of pizza will need to be done in PizzaFactory
 	//---------------------------------------
 	
+	
 	//---------------------------------------
-	
-	
 	// Order time and delivery time too close together
 	//---------------------------------------
 	
 	@Test (expected = PizzaException.class)
-	public void pizzaTooSoon () throws PizzaException {
+	public void deliverPizzaTooSoon () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
+	
 	//---------------------------------------
-	
-	
-	// Order time and delivery time too late
+	// Order time and delivery time too far apart
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
-	public void pizzaTooLate () throws PizzaException {
+	public void deliverPizzaTooLate () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
 	}
 	
 	//---------------------------------------
-	// Order before opening hours
+	// Order 1 minute before opening hours
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
-	public void orderBeforeHours () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 30), LocalTime.of(18, 50));
+	public void orderOneMinuteBeforeHours () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 9));
+	}
+	
+	//---------
+	// Order 1 minute after opening hours
+	//---------
+	@Test
+	public void orderOnOpeningTime () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(19, 0), LocalTime.of(19, 10));
 	}
 	
 	//---------------------------------------
 	// Order after delivery hours
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
-	public void orderAfterHours () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(23, 30), LocalTime.of(23, 50));
+	public void orderOnClosingTime () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(23, 0), LocalTime.of(23, 50));
 	}
 	
 	//---------------------------------------
@@ -89,15 +110,15 @@ public class PizzaTests {
 	//---------------------------------------
 	@Test
 	public void orderTimeLegitButDeliveryTimeUnlegitButIKeepGoingBecauseImAGymnast () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(22, 30), LocalTime.of(23, 20));
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(22, 59), LocalTime.of(23, 20));
 	}
 	
 	//---------------------------------------
 	// Delivery after 7 but order before 7
 	//---------------------------------------
 	@Test (expected = PizzaException.class)
-	public void deliveryLegitButOrderTimeUnlegitSoIMustQuit () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 55), LocalTime.of(19, 20));
+	public void deliveryTimeLegitButOrderTimeUnlegitSoIMustQuit () throws PizzaException {
+		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 20));
 	}
 	
 	//---------------------------------------
@@ -195,6 +216,18 @@ public class PizzaTests {
 		MeatLoversPizza pizza3 = new MeatLoversPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		assertTrue(pizza3.getCostPerPizza() == 5.0);
 		
+	}
+	
+	@Test
+	public void ordersAreCorrectCost () throws PizzaException {
+		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));
+		assertTrue(pizza1.getOrderCost() == 5.0 * 5);
+	}
+	
+	@Test
+	public void ordersAreCorrectPrice () throws PizzaException {
+		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));
+		assertTrue(pizza1.getOrderCost() == 12 * 5);
 	}
 	
 	

@@ -30,6 +30,7 @@ public class RestaurantPizzaTests {
 		restaurant.getCustomerByIndex(0);
 	}
 	
+	
 	//--------
 	// Get pizza out of range throws pizza exception
 	//--------

@@ -52,6 +52,7 @@ public class LogHandlerPizzaTests {
 		pizza.get(0);
 	}
 	
+	
 	//--------
 	// Create Pizza normally
 	//--------
@@ -69,20 +70,29 @@ public class LogHandlerPizzaTests {
 		LogHandler.createPizza("21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,9");
 	}
 	
+	
 	//--------
 	// Attempt to make pizza, but have 10 inputs
 	//--------
 	@Test (expected = LogHandlerException.class)
-	public void createPizzaNull () throws PizzaException, LogHandlerException {
+	public void createPizzatTooMuchInfo () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("aaaaaa,20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,9");
 	}
 	
 	//--------
-	// Attempt to make too many pizzas
+	// Attempt to make pizza, but have NO inputs
+	//--------
+	@Test (expected = LogHandlerException.class)
+	public void createPizzaNoInfo () throws PizzaException, LogHandlerException {
+		LogHandler.createPizza("");
+	}
+	
+	//--------
+	// Attempt to make one too many pizzas
 	//--------
 	@Test (expected = PizzaException.class)
 	public void makeTooManyPizzas () throws PizzaException, LogHandlerException {
-		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,19");
+		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,11");
 	}
 	
 	//--------
@@ -94,7 +104,7 @@ public class LogHandlerPizzaTests {
 	}
 	
 	//--------
-	// Attempt to make negative pizzas
+	// Attempt to make zero pizzas
 	//--------
 	@Test (expected = PizzaException.class)
 	public void makeZeroPizzas () throws PizzaException, LogHandlerException {
@@ -113,16 +123,17 @@ public class LogHandlerPizzaTests {
 	// Attempt a weirdly formatted time string
 	//--------
 	@Test (expected = LogHandlerException.class)
-	public void makeWeirdTime () throws LogHandlerException, PizzaException {
+	public void makePizzaWithInvalidTime () throws LogHandlerException, PizzaException {
 		LogHandler.createPizza("2047:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,4.5");
+		LogHandler.createPizza("20:47:00,2111:00,Caden Kumar,0862001010,PUC,0,0,PZL,4.5");
 	}
 	
 	//--------
 	// Have blank inputs
 	//--------
 	@Test (expected = LogHandlerException.class)
-	public void blankInputs () throws PizzaException, LogHandlerException {
-		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,,0");
+	public void makePizzaWithBlankInputs () throws PizzaException, LogHandlerException {
+		LogHandler.createPizza(",,,,,,,,");
 	}
 	
 	

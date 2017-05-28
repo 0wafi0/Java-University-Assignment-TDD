@@ -24,7 +24,7 @@ public class PizzaFactoryTests {
 	// Make Pizza correctly
 	//--------
 	@Test
-	public void getVegPizzaNormally () throws PizzaException {
+	public void getPizzaTypeNormally () throws PizzaException {
 		Pizza pizzaVeg = PizzaFactory.getPizza("PZV", 2, LocalTime.of(20, 30), LocalTime.of(20, 50));
 		Pizza pizzaMarg = PizzaFactory.getPizza("PZM", 3, LocalTime.of(20, 30), LocalTime.of(20, 50));
 		Pizza pizzaMeat = PizzaFactory.getPizza("PZL", 4, LocalTime.of(20, 30), LocalTime.of(20, 50));
@@ -33,6 +33,7 @@ public class PizzaFactoryTests {
 		assertEquals(pizzaMarg.getPizzaType(), "margherita");
 		assertEquals(pizzaMeat.getPizzaType(), "meat lover");
 	}
+	
 	
 	//--------
 	// Attempt invalid pizza code
