@@ -44,13 +44,10 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
-<<<<<<< HEAD
-=======
 	private static String logFile1 = "logs/20170101.txt";
 	private static String logFile2 = "logs/20170102.txt";
 	private static String logFile3 = "logs/20170103.txt";
-	
->>>>>>> origin/ScottTests
+
 
 
 	/**
@@ -64,26 +61,11 @@ public class LogHandler {
 		String line = "";
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		try {
-<<<<<<< HEAD
+
 			FileInputStream inputStream = new FileInputStream(filename);
 			InputStreamReader streamReader = new InputStreamReader(inputStream);
 			BufferedReader bufferReader= new BufferedReader(streamReader);
-			while(true) {		
-				line = bufferReader.readLine();
-				if(line != null) {
-					Customer customer = createCustomer(line);
-					customerDataset.add(customer);
-				}
-				else {
-					break;
-				}
-				
-			}
-=======
-			inputStream = new FileInputStream(filename);
-			streamReader = new InputStreamReader(inputStream);
-			bufferReader = new BufferedReader(streamReader);
-			
+
 			line = bufferReader.readLine();
 			do {
 				Customer customer = createCustomer(line);
@@ -91,10 +73,10 @@ public class LogHandler {
 				line = bufferReader.readLine();
 			} while (line != null);
 			
->>>>>>> origin/ScottTests
 			inputStream.close();
 			bufferReader.close();
 			streamReader.close();
+			
 			if(customerDataset.isEmpty()){
 				throw new LogHandlerException("File is empty");
 			}
@@ -143,24 +125,10 @@ public class LogHandler {
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
 		String[] customerInfo = line.split(",");
-		
-<<<<<<< HEAD
-		if(customerInfo == null) {
-        	throw new LogHandlerException("Error detected in the log");
-        }
-        if(customerInfo.length != 9) {
-        	throw new LogHandlerException("Error detected in the log");
-        }
-        for(int i = 0; i < 2; i++) {
-        	if(customerInfo[i].equals("")) {
-        		throw new LogHandlerException("Error detected in the log");
-        	}
-        }
-=======
+
 		if (customerInfo.length != 9) {
 			throw new LogHandlerException();
 		}
->>>>>>> origin/ScottTests
 		
 		String name = customerInfo[2];
 		String mobileNumber = customerInfo[3];

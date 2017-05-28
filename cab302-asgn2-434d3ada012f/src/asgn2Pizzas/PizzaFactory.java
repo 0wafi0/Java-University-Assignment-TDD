@@ -38,11 +38,7 @@ public class PizzaFactory {
 			return output;
 		}
 		else if(pizzaCode.equals("PZL")) {
-<<<<<<< HEAD
 			Pizza output = new VegetarianPizza(quantity, orderTime, deliveryTime);
-=======
-			Pizza output = new MeatLoversPizza(quantity, orderTime, deliveryTime);
->>>>>>> origin/ScottTests
 			return output;
 		}else {
 			throw new PizzaException("invalid Pizza code");
