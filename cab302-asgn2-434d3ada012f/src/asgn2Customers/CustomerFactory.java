@@ -31,11 +31,8 @@ public class CustomerFactory {
 	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
-		// TO DO
-		
 		Customer customer = null;
 		// Basically just a bunch of if statements to decide what type of customer we are...
-		
 		if (customerCode.equals(PICK_UP)) {
 			customer = new PickUpCustomer(name, mobileNumber, locationX, locationY);
 		}
@@ -46,9 +43,8 @@ public class CustomerFactory {
 			customer = new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
 		}
 		else {
-			throw new CustomerException();
+			throw new CustomerException("The customer code is wrong");
 		}
-
 		return customer;
 	}
 }

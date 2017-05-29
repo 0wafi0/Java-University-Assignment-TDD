@@ -8,6 +8,7 @@ import asgn2Customers.Customer;
 import asgn2Customers.CustomerFactory;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalTime;
@@ -46,7 +47,7 @@ public class LogHandler {
 	private static String logFile1 = "logs/20170101.txt";
 	private static String logFile2 = "logs/20170102.txt";
 	private static String logFile3 = "logs/20170103.txt";
-	
+
 
 
 	/**
@@ -55,26 +56,16 @@ public class LogHandler {
 	 * @return an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file. 
 	 * @throws CustomerException If the log file contains semantic errors leading that violate the customer constraints listed in Section 5.3 of the Assignment Specification or contain an invalid customer code (passed by another class).
 	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
-	 * 
-	 */
-	
+	 */	
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
-		// TO DO
-		FileInputStream inputStream;
-		BufferedReader bufferReader;
-		InputStreamReader streamReader;
-		String line;
+		String line = "";
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
-		
-		if (!filename.equals(logFile1) && !filename.equals(logFile2) && !filename.equals(logFile3)) {
-			throw new LogHandlerException();
-		}
-		
 		try {
-			inputStream = new FileInputStream(filename);
-			streamReader = new InputStreamReader(inputStream);
-			bufferReader = new BufferedReader(streamReader);
-			
+
+			FileInputStream inputStream = new FileInputStream(filename);
+			InputStreamReader streamReader = new InputStreamReader(inputStream);
+			BufferedReader bufferReader= new BufferedReader(streamReader);
+
 			line = bufferReader.readLine();
 			do {
 				Customer customer = createCustomer(line);
@@ -86,16 +77,14 @@ public class LogHandler {
 			bufferReader.close();
 			streamReader.close();
 			
+			if(customerDataset.isEmpty()){
+				throw new LogHandlerException("File is empty");
+			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("This happens when 'filename' is invalid");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("This happens when 'bufferReader' throws an exception");
+			throw new LogHandlerException("No File");
+		} catch (IOException e) {								
+			throw new LogHandlerException("IO error");
 		}
-		
 		return customerDataset;
 	}		
 
@@ -115,6 +104,9 @@ public class LogHandler {
             	Pizza temp = createPizza(line);
             	output.add(temp);
             }
+			if( output.isEmpty()){
+				throw new LogHandlerException("File is empty");
+			}
         } catch (IOException e) {
             throw new LogHandlerException("problem in parsing the log file in populatePizzaDataset");
         }
@@ -133,7 +125,7 @@ public class LogHandler {
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
 		String[] customerInfo = line.split(",");
-		
+
 		if (customerInfo.length != 9) {
 			throw new LogHandlerException();
 		}
@@ -148,7 +140,7 @@ public class LogHandler {
 			locationY = Integer.parseInt(customerInfo[6]);
 		}
 		catch (NumberFormatException exception) {
-			throw new CustomerException();
+			throw new LogHandlerException("can't parse integer values for coordinates");
 		} 
 		
 		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);

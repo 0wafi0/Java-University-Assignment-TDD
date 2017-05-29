@@ -4,12 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.text.DefaultCaret;
 
 import asgn2Customers.Customer;
+import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
+import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Restaurant.LogHandler;
 import asgn2Restaurant.PizzaRestaurant;
 
 import javax.swing.JFrame;
@@ -53,40 +58,75 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	// Files
 	private final int numFiles = 3;
-	private final String filePrefix = "2017010";
+	private final String filePrefix = "logs/2017010";
 	private final String fileSuffix = ".txt";
 	private String fileChosen;
 	
+	// Storage for Customers and Pizzas
+	ArrayList<Customer> customers;
+	ArrayList<Pizza> pizzas;
 	
-	// Set up the GUI
-	private void createGUI () { 
+	/**
+	 * Set the GUI up
+	 */
+	private void createGUI() { 
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new GridLayout(3, 1));
 		//Panel related code will go here
 	} 
 
-	// Creates event listener that updates the filename variable
-	private ActionListener createEventListener () {
-		ActionListener temp = new ActionListener () {
+	/**
+	 * standard action listener for any buttons created
+	 */
+	private ActionListener createEventListener() {
+		ActionListener temp = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				// TODO Auto-generated method stub
-				System.out.println(options.getSelectedItem());
+				// if submit button is pressed
+				if(event.getActionCommand().equals("Submit")) {
+					fileChosen = options.getSelectedItem().toString();
+					try {
+						LoadFile();
+						
+					} catch (CustomerException e) {
+						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "CustomerException thrown", JOptionPane.ERROR_MESSAGE);
+					} catch (LogHandlerException e) {
+						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "LogHandlerException thrown", JOptionPane.ERROR_MESSAGE);
+					} catch (PizzaException e) {
+						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "PizzaException", JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
 		};
 		return temp;
 	}
 	
-	// Creates a JButton and attaches an event listener to it
-	private JButton createButton (String label) {
+	/**
+	 * Load the file
+	 * @throws LogHandlerException 
+	 * @throws CustomerException 
+	 * @throws PizzaException 
+	 */
+	private void LoadFile() throws CustomerException, LogHandlerException, PizzaException {
+		customers = LogHandler.populateCustomerDataset(fileChosen);
+		pizzas = LogHandler.populatePizzaDataset(fileChosen);
+		
+	}
+	
+	/**
+	 * create a button
+	 */
+	private JButton createButton(String label) {
 		JButton button = new JButton(label);
 		ActionListener buttonPress = createEventListener();
 		button.addActionListener(buttonPress);
 		return button;
 	}
 	
-	// Puts all elements created in the constructor on the frame
+	/**
+	 * Adds all the elements to the window
+	 */
 	private void addEverythingToScreen () {
 		pizzaGUI = this.getContentPane();
 		pizzaGUI.add(titleLabel, BorderLayout.NORTH);
@@ -94,8 +134,10 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		pizzaGUI.add(button, BorderLayout.SOUTH);
 	}
 	
-	// Creates a combo box of all possible files
-	private JComboBox<String> createComboBox () {
+	/**
+	 * Creates the required combo box
+	 */
+	private JComboBox<String> createComboBox() {
 		JComboBox<String> comboBox = new JComboBox<String>();
 		
 		for (int i = 0; i < numFiles; i++) {
@@ -105,7 +147,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	}
 	
 	
-	// I just took this from the tutorial...
+	/**
+	 * Obscure function copied from the tute
+	 */
 	@Override
 	public void run() {
 		// TO DO

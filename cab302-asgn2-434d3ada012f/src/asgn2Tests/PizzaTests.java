@@ -24,7 +24,6 @@ import java.time.LocalTime;
  *
  */
 public class PizzaTests {
-	// TO DO
 	
 	//---------------------------------------
 	// Testing too many pizzas
@@ -57,11 +56,6 @@ public class PizzaTests {
 	public void negativePizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(-5, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
-	
-	
-	//---------------------------------------
-	// Ordering an invalid type of pizza will need to be done in PizzaFactory
-	//---------------------------------------
 	
 	
 	//---------------------------------------
