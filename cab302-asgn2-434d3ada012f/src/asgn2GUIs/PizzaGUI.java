@@ -2,6 +2,8 @@ package asgn2GUIs;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -50,12 +52,20 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	public static final int HEIGHT = 600;
 	
 	// Screen
-	private Label titleLabel;
+	private JTextField titleLabel;
+	private JTextField calculatedProfit;
+	private JTextField calculatedDist;
 	private Container pizzaGUI;
-	private JButton button;
+	private JButton [] buttons;
 	private JComboBox<String> options;
 	
 	private JPanel buttonPanel;
+	
+	private String [] buttonNames = {"Load Log File", 
+									"Display Log File", 
+									"Display Distance", 
+									"Display Profit", 
+									"Reset Information"};
 	
 	// Table
 	private String[] columnNames = {"Customer Name", 
@@ -69,7 +79,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 									"Order Cost", 
 									"Order Profit"};
 	
-	
 	// Files
 	private final int numFiles = 3;
 	private final String filePrefix = "logs/2017010";
@@ -77,16 +86,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	private String fileChosen;
 	
 	// Storage for Customers and Pizzas
-	ArrayList<Customer> customers;
-	ArrayList<Pizza> pizzas;
+	
+	
+	private String empty = "--";
+
 	
 	/**
 	 * Set the GUI up
 	 */
 	private void createGUI() { 
-		setSize(WIDTH, HEIGHT);
+		setSize(WIDTH, HEIGHT / 3);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new GridLayout(3, 1));
+		setLayout(new GridLayout(5, 1));
 		//Panel related code will go here
 	}
 	
@@ -105,36 +116,38 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	}
 	
 	
-	private JScrollPane createTable () {
-		String[][] orders = new String[customers.size()][10];
+	private JScrollPane createTable () throws CustomerException, PizzaException {
+		String[][] orders = new String[restaurant.getNumCustomerOrders()][10];
 		
 		
-		for (int i = 0; i < customers.size(); i++) {
-			orders[i][0] = customers.get(i).getName();
-			orders[i][1] = customers.get(i).getMobileNumber();
-			orders[i][2] = convertCustomerType(customers.get(i).getCustomerType());
-			orders[i][3] = Integer.toString(customers.get(i).getLocationX());
-			orders[i][4] = Integer.toString(customers.get(i).getLocationY());
-			orders[i][5] = pizzas.get(i).getPizzaType();
-			orders[i][6] = Integer.toString(pizzas.get(i).getQuantity());
-			orders[i][7] = Double.toString(pizzas.get(i).getOrderPrice());
-			orders[i][8] = Double.toString(pizzas.get(i).getOrderCost());
-			orders[i][9] = Double.toString(pizzas.get(i).getOrderProfit());
+		for (int i = 0; i < restaurant.getNumCustomerOrders(); i++) {
+			orders[i][0] = restaurant.getCustomerByIndex(i).getName();
+			orders[i][1] = restaurant.getCustomerByIndex(i).getMobileNumber();
+			orders[i][2] = convertCustomerType(restaurant.getCustomerByIndex(i).getCustomerType());
+			orders[i][3] = Integer.toString(restaurant.getCustomerByIndex(i).getLocationX());
+			orders[i][4] = Integer.toString(restaurant.getCustomerByIndex(i).getLocationY());
+			orders[i][5] = restaurant.getPizzaByIndex(i).getPizzaType();
+			orders[i][6] = Integer.toString(restaurant.getPizzaByIndex(i).getQuantity());
+			orders[i][7] = Double.toString(restaurant.getPizzaByIndex(i).getOrderPrice());
+			orders[i][8] = Double.toString(restaurant.getPizzaByIndex(i).getOrderCost());
+			orders[i][9] = Double.toString(restaurant.getPizzaByIndex(i).getOrderProfit());
 		}
 		
+		// Unless we limit the number of times the user can open a table, we may as well make these local and lose reference to it...
 		JTable table = new JTable(orders, columnNames);
 		JScrollPane scrollPane = new JScrollPane(table);
 		return scrollPane;
 	}
 	
 	
-	private void createSecondScreen () {
+	private void createSecondScreen () throws CustomerException, PizzaException {
 		JFrame secondScreen = new JFrame("Ello guvna");
 		secondScreen.add(createTable());
 		secondScreen.setSize(WIDTH, HEIGHT);
 		secondScreen.setVisible(true);
 	}
-
+	
+	
 	/**
 	 * standard action listener for any buttons created
 	 */
@@ -142,20 +155,44 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		ActionListener temp = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				// if submit button is pressed
-				if(event.getActionCommand().equals("Submit")) {
-					fileChosen = options.getSelectedItem().toString();
+				// If the load log file button is clicked...
+				if (event.getActionCommand().equals(buttonNames[0])) {
 					try {
+						fileChosen = options.getSelectedItem().toString();
 						LoadFile();
+						// Enable the rest of the buttons
+						for (int i = 1; i < buttons.length; i++) {
+							buttons[i].setEnabled(true);
+						}
+					} catch (CustomerException | LogHandlerException
+							| PizzaException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				// If the user wants to display data
+				if(event.getActionCommand().equals(buttonNames[1])) {
+					try {
 						createSecondScreen();
-						
 					} catch (CustomerException e) {
 						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "CustomerException thrown", JOptionPane.ERROR_MESSAGE);
-					} catch (LogHandlerException e) {
-						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "LogHandlerException thrown", JOptionPane.ERROR_MESSAGE);
 					} catch (PizzaException e) {
 						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "PizzaException", JOptionPane.ERROR_MESSAGE);
 					}
+				}
+				if (event.getActionCommand().equals(buttonNames[2])) {
+					calculatedDist.setText(restaurant.getTotalDeliveryDistance() + " m");
+				}
+				if (event.getActionCommand().equals(buttonNames[3])) {
+					calculatedProfit.setText("$" + restaurant.getTotalProfit());
+				}
+				if (event.getActionCommand().equals(buttonNames[4])) {
+					restaurant.resetDetails();
+					for (int i = 1; i < buttons.length; i++) {
+						buttons[i].setEnabled(false);
+					}
+					calculatedDist.setText(empty);
+					calculatedProfit.setText(empty);
 				}
 			}
 		};
@@ -169,18 +206,20 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * @throws PizzaException 
 	 */
 	private void LoadFile() throws CustomerException, LogHandlerException, PizzaException {
-		customers = LogHandler.populateCustomerDataset(fileChosen);
-		pizzas = LogHandler.populatePizzaDataset(fileChosen);
+		//customers = LogHandler.populateCustomerDataset(fileChosen);
+		//pizzas = LogHandler.populatePizzaDataset(fileChosen);
+		restaurant.processLog(fileChosen);
 		
 	}
 	
 	/**
 	 * create a button
 	 */
-	private JButton createButton(String label) {
+	private JButton createButton(String label, boolean enabled) {
 		JButton button = new JButton(label);
 		ActionListener buttonPress = createEventListener();
 		button.addActionListener(buttonPress);
+		button.setEnabled(enabled);
 		return button;
 	}
 	
@@ -188,10 +227,40 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * Adds all the elements to the window
 	 */
 	private void addEverythingToScreen () {
+		// Set panels and layouts...
+		JPanel profitField = new JPanel();
+		JPanel distanceField = new JPanel();
+		profitField.setLayout(new GridLayout(1, 2));
+		distanceField.setLayout(new GridLayout(1, 2));
+		
+		profitField.add(new Label("Calculated Profit"), BorderLayout.SOUTH);
+		profitField.add(calculatedProfit, BorderLayout.SOUTH);
+		distanceField.add(new Label("Calculated Distance"), BorderLayout.SOUTH);
+		distanceField.add(calculatedDist, BorderLayout.SOUTH);
+		
+		
 		pizzaGUI = this.getContentPane();
 		pizzaGUI.add(titleLabel, BorderLayout.NORTH);
 		pizzaGUI.add(options, BorderLayout.SOUTH);
 		pizzaGUI.add(buttonPanel, BorderLayout.SOUTH);
+		pizzaGUI.add(profitField, BorderLayout.SOUTH);
+		pizzaGUI.add(distanceField, BorderLayout.SOUTH);
+		
+		
+		
+		
+	}
+	
+	class Listener implements ItemListener {
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			// TODO Auto-generated method stub
+			for (int i = 1; i < buttons.length; i++) {
+				buttons[i].setEnabled(false);
+			}
+		}
+		
 	}
 	
 	/**
@@ -203,10 +272,29 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		for (int i = 0; i < numFiles; i++) {
 			comboBox.addItem(filePrefix + (i + 1) + fileSuffix);
 		}
+		
+		comboBox.addItemListener(new Listener());
+		
 		return comboBox;
 	}
 	
 	
+	private JPanel createButtonPanel () {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1, 5));
+		
+		buttons[0] = createButton(buttonNames[0], true);
+		panel.add(buttons[0]);
+		
+		for (int i = 1; i < buttons.length; i++) {
+			buttons[i] = createButton(buttonNames[i], false);
+			panel.add(buttons[i]);
+		}
+		
+		return panel;
+	}
+	
+
 	/**
 	 * Obscure function copied from the tute
 	 */
@@ -216,32 +304,20 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		JFrame.setDefaultLookAndFeelDecorated(true); 
 	}
 	
-	private JPanel createButtonPanel () {
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1, 3));
-		
-		button = createButton("Submit");
-		panel.add(button);
-		
-		button = createButton("Calculate Price");
-		panel.add(button);
-		
-		button = createButton("Reset Information");
-		panel.add(button);
-		
-		return panel;
-	}
-	
 	/**
 	 * Creates a new Pizza GUI with the specified title 
 	 * @param title - The title for the supertype JFrame
 	 */
 	public PizzaGUI(String title) {
 		// Update private fields
+		restaurant = new PizzaRestaurant();
+		buttons = new JButton[5];
 		this.title = title;
 		
 		createGUI();
-		titleLabel = new Label(this.title);
+		titleLabel = new JTextField(this.title);
+		calculatedProfit = new JTextField(empty);
+		calculatedDist = new JTextField(empty);
 		buttonPanel = createButtonPanel();
 		options = createComboBox();
 		addEverythingToScreen();
@@ -249,197 +325,5 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		this.setVisible(true);		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
-
-
-//package asgn2GUIs;
-//
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.io.File;
-//import java.text.DecimalFormat;
-//import java.util.ArrayList;
-//
-//import javax.swing.JPanel;
-//import javax.swing.text.DefaultCaret;
-//
-//import asgn2Customers.Customer;
-//import asgn2Exceptions.CustomerException;
-//import asgn2Exceptions.LogHandlerException;
-//import asgn2Exceptions.PizzaException;
-//import asgn2Pizzas.Pizza;
-//import asgn2Restaurant.LogHandler;
-//import asgn2Restaurant.PizzaRestaurant;
-//
-//import javax.swing.JFrame;
-//
-//import java.awt.*;
-//
-//import javax.swing.*;
-//
-///**
-// * This class is the graphical user interface for the rest of the system. 
-// * Currently it is a �dummy� class which extends JFrame and implements Runnable and ActionLister. 
-// * It should contain an instance of an asgn2Restaurant.PizzaRestaurant object which you can use to 
-// * interact with the rest of the system. You may choose to implement this class as you like, including changing 
-// * its class signature � as long as it  maintains its core responsibility of acting as a GUI for the rest of the system. 
-// * You can also use this class and asgn2Wizards.PizzaWizard to test your system as a whole
-// * 
-// * 
-// * @author Person A and Person B
-// *
-// */
-//public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionListener {
-//	
-//	
-//	private PizzaRestaurant restaurant;
-//	
-//	private static final long serialVersionUID = -7031008862559936404L;
-//	
-//	// Title (do NOT let this be static!)
-//	private String title;
-//	
-//	// Dimensions
-//	public static final int WIDTH = 600;
-//	public static final int HEIGHT = 600;
-//	
-//	// Screen
-//	private Label titleLabel;
-//	private Container pizzaGUI;
-//	private JButton button;
-//	private JComboBox<String> options;
-//	
-//	
-//	// Files
-//	private final int numFiles = 3;
-//	private final String filePrefix = "logs/2017010";
-//	private final String fileSuffix = ".txt";
-//	private String fileChosen;
-//	
-//	// Storage for Customers and Pizzas
-//	ArrayList<Customer> customers;
-//	ArrayList<Pizza> pizzas;
-//	
-//	/**
-//	 * Set the GUI up
-//	 */
-//	private void createGUI() { 
-//		setSize(WIDTH, HEIGHT);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setLayout(new GridLayout(3, 1));
-//		//Panel related code will go here
-//	} 
-//
-//	/**
-//	 * standard action listener for any buttons created
-//	 */
-//	private ActionListener createEventListener() {
-//		ActionListener temp = new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent event) {
-//				// if submit button is pressed
-//				if(event.getActionCommand().equals("Submit")) {
-//					fileChosen = options.getSelectedItem().toString();
-//					try {
-//						LoadFile();
-//						
-//					} catch (CustomerException e) {
-//						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "CustomerException thrown", JOptionPane.ERROR_MESSAGE);
-//					} catch (LogHandlerException e) {
-//						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "LogHandlerException thrown", JOptionPane.ERROR_MESSAGE);
-//					} catch (PizzaException e) {
-//						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "PizzaException", JOptionPane.ERROR_MESSAGE);
-//					}
-//				}
-//			}
-//		};
-//		return temp;
-//	}
-//	
-//	/**
-//	 * Load the file
-//	 * @throws LogHandlerException 
-//	 * @throws CustomerException 
-//	 * @throws PizzaException 
-//	 */
-//	private void LoadFile() throws CustomerException, LogHandlerException, PizzaException {
-//		customers = LogHandler.populateCustomerDataset(fileChosen);
-//		pizzas = LogHandler.populatePizzaDataset(fileChosen);
-//		
-//	}
-//	
-//	/**
-//	 * create a button
-//	 */
-//	private JButton createButton(String label) {
-//		JButton button = new JButton(label);
-//		ActionListener buttonPress = createEventListener();
-//		button.addActionListener(buttonPress);
-//		return button;
-//	}
-//	
-//	/**
-//	 * Adds all the elements to the window
-//	 */
-//	private void addEverythingToScreen () {
-//		pizzaGUI = this.getContentPane();
-//		pizzaGUI.add(titleLabel, BorderLayout.NORTH);
-//		pizzaGUI.add(options, BorderLayout.SOUTH);
-//		pizzaGUI.add(button, BorderLayout.SOUTH);
-//	}
-//	
-//	/**
-//	 * Creates the required combo box
-//	 */
-//	private JComboBox<String> createComboBox() {
-//		JComboBox<String> comboBox = new JComboBox<String>();
-//		
-//		for (int i = 0; i < numFiles; i++) {
-//			comboBox.addItem(filePrefix + (i + 1) + fileSuffix);
-//		}
-//		return comboBox;
-//	}
-//	
-//	
-//	/**
-//	 * Obscure function copied from the tute
-//	 */
-//	@Override
-//	public void run() {
-//		// TO DO
-//		JFrame.setDefaultLookAndFeelDecorated(true); 
-//	}
-//	
-//	
-//	
-//	/**
-//	 * Creates a new Pizza GUI with the specified title 
-//	 * @param title - The title for the supertype JFrame
-//	 */
-//	public PizzaGUI(String title) {
-//		// Update private fields
-//		this.title = title;
-//		
-//		createGUI();
-//		titleLabel = new Label(this.title);
-//		button = createButton("Submit");
-//		options = createComboBox();
-//		addEverythingToScreen();
-//		
-//		// Set GUI to visible
-//		this.setVisible(true);		
-//	}
-//
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//}
