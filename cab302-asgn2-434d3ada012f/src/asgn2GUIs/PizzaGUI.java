@@ -35,7 +35,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	private PizzaRestaurant restaurant;
 	
-	// Line we are meant to "trust" #CAB201
 	private static final long serialVersionUID = -7031008862559936404L;
 	
 	// Title (do NOT let this be static!)
@@ -131,6 +130,12 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		// Set GUI to visible
 		this.setVisible(true);		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

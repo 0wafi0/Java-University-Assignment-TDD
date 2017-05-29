@@ -35,7 +35,7 @@ public class PizzaWizard {
 	 */
 	public static void main(String[] args) {
 
-		//		SwingUtilities.invokeLater(new PizzaGUI("Pizza Place"));		
+		SwingUtilities.invokeLater(new PizzaGUI("Pizza Place"));		
 		
 	}
 
