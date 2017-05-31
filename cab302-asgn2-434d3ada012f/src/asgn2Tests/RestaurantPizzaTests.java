@@ -20,17 +20,6 @@ import asgn2Restaurant.*;
 public class RestaurantPizzaTests {
 	// TO DO
 	
-	//------------
-	// Get customer properly by index works correctly
-	//------------
-	@Test
-	public void getCustomerByIndexProper () throws LogHandlerException, CustomerException, PizzaException {
-		PizzaRestaurant restaurant = new PizzaRestaurant();
-		restaurant.processLog("logs/20170101.txt");
-		restaurant.getCustomerByIndex(0);
-	}
-	
-	
 	//--------
 	// Get pizza out of range throws pizza exception
 	//--------
