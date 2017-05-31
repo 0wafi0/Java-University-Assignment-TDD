@@ -230,7 +230,6 @@ public class PizzaTests {
 	 * */
 	@Test
 	public void pizzasContainCorrectToppings () throws PizzaException {
-
 		MargheritaPizza pizza1 = new MargheritaPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		
 		assertTrue(pizza1.containsTopping(PizzaTopping.TOMATO)); 

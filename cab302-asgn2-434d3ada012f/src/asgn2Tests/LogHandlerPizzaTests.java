@@ -19,6 +19,10 @@ import asgn2Restaurant.LogHandler;
 public class LogHandlerPizzaTests {
 	// TO DO	
 	
+	// granted I haven't looked into this in perfect details
+	// but generally speaking this seems fine.
+	// one major thing that may be missing are the tests
+	
 	//--------
 	// Create Pizza Dataset normally
 	//--------
@@ -35,13 +39,6 @@ public class LogHandlerPizzaTests {
 	public void createPizzaDatasetDodgyFilename () throws LogHandlerException, PizzaException {
 		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset("log");
 	}
-	
-	
-	//--------
-	// Attempt to create Pizza Dataset with weird file
-	//--------
-	
-	
 	
 	//--------
 	// Get customer with valid index
@@ -135,11 +132,7 @@ public class LogHandlerPizzaTests {
 	public void makePizzaWithBlankInputs () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza(",,,,,,,,");
 	}
-	
-	
-	
-	
-	
+
 	
 }
 

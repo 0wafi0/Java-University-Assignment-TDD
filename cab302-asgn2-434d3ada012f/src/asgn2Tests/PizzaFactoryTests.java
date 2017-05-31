@@ -18,7 +18,11 @@ import asgn2Pizzas.PizzaFactory;
  * 
  */
 public class PizzaFactoryTests {
-	// TO DO
+	
+	
+	// Make sure you tests for all possible exception.
+	// Have a look at CustomerFactoryTests I have heaps of exception testing
+	// I know it's ANAL but yeah
 	
 	//--------
 	// Make Pizza correctly

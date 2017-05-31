@@ -132,7 +132,7 @@ public class LogHandlerCustomerTests {
 	@Test
 	public void populateCustomerDatasetGeneralTestCase1() throws LogHandlerException, CustomerException {				
 		ArrayList<Customer> temp = new ArrayList<Customer>();
-		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170101.txt");
+		temp = LogHandler.populateCustomerDataset("logs/20170101.txt");
 		assertTrue(temp.size() == 3);
 		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
 		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
@@ -153,7 +153,7 @@ public class LogHandlerCustomerTests {
 	@Test
 	public void populateCustomerDatasetGeneralTestCase2() throws LogHandlerException, CustomerException {				
 		ArrayList<Customer> temp = new ArrayList<Customer>();
-		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170102.txt");
+		temp = LogHandler.populateCustomerDataset("logs/20170102.txt");
 		assertTrue(temp.size() == 10);
 		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
 		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
@@ -192,55 +192,17 @@ public class LogHandlerCustomerTests {
 		assertEquals(temp.get(8).getLocationX(), -5);
 		assertEquals(temp.get(8).getLocationY(), -10);
 		
-	}
+	}	
 	
 	/**
-	 * Test with the 20170102.txt
+	 * Test with the 20170103.txt
 	 * @throws CustomerException 
 	 */
 	@Test
-	public void populateCustomerDatasetGeneralTestCase3() throws LogHandlerException, CustomerException {				
-//		ArrayList<Customer> temp = new ArrayList<Customer>();
-//		temp = LogHandler.populateCustomerDataset("C:/Users/Wafi/Documents/CAB302/Assignment2/cab302-asgn2-434d3ada012f/logs/20170102.txt");
-//		assertTrue(temp.size() == 10);
-//		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
-//		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
-//		assertTrue(temp.get(2).getCustomerType().equals("DNC"));
-//		assertTrue(temp.get(3).getCustomerType().equals("PUC"));
-//		assertTrue(temp.get(4).getCustomerType().equals("DNC"));
-//		assertTrue(temp.get(5).getCustomerType().equals("PUC"));
-//		assertTrue(temp.get(6).getCustomerType().equals("DNC"));
-//		assertTrue(temp.get(7).getCustomerType().equals("DNC"));
-//		assertTrue(temp.get(8).getCustomerType().equals("DVC"));
-//		assertTrue(temp.get(9).getCustomerType().equals("PUC"));
-//		
-//		assertTrue(temp.get(0).getName().equals("Emma Brown"));
-//		assertTrue(temp.get(1).getName().equals("Lucas Anderson"));
-//		assertTrue(temp.get(2).getName().equals("Sophia Singh"));
-//		assertTrue(temp.get(3).getName().equals("Bella Chen"));
-//		assertTrue(temp.get(4).getName().equals("Sophia Brown"));
-//		assertTrue(temp.get(5).getName().equals("Eli Wang"));
-//		assertTrue(temp.get(6).getName().equals("Riley Brown"));
-//		assertTrue(temp.get(7).getName().equals("Emma Chen"));
-//		assertTrue(temp.get(8).getName().equals("Jackson Taylor"));
-//		assertTrue(temp.get(9).getName().equals("Caden Kumar"));
-//		
-//		assertEquals(temp.get(0).getLocationX(), -1);
-//		assertEquals(temp.get(0).getLocationY(), 0);
-//		assertEquals(temp.get(1).getLocationX(), -4);
-//		assertEquals(temp.get(1).getLocationY(), 5);
-//		assertEquals(temp.get(2).getLocationX(), 1);
-//		assertEquals(temp.get(2).getLocationY(), 8);
-//		assertEquals(temp.get(4).getLocationX(), -2);
-//		assertEquals(temp.get(4).getLocationY(), 4);
-//		assertEquals(temp.get(6).getLocationX(), -2);
-//		assertEquals(temp.get(6).getLocationY(), 0);
-//		assertEquals(temp.get(7).getLocationX(), -4);
-//		assertEquals(temp.get(7).getLocationY(), 2);
-//		assertEquals(temp.get(8).getLocationX(), -5);
-//		assertEquals(temp.get(8).getLocationY(), -10);
-		
+	public void populateCustomerDatasetGeneralTestCase3() throws LogHandlerException, CustomerException { 
+		ArrayList<Customer> temp = new ArrayList<Customer>();
+		temp = LogHandler.populateCustomerDataset("logs/20170102.txt");
+		assertTrue(temp.size() == 100);
 	}
-	
 	
 }

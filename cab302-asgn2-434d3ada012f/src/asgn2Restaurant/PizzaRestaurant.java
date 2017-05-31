@@ -55,7 +55,6 @@ public class PizzaRestaurant {
      *
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
-		// TO DO
 		customers = LogHandler.populateCustomerDataset(filename);
 		pizzas = LogHandler.populatePizzaDataset(filename);
 		

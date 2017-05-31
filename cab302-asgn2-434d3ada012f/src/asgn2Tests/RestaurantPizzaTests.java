@@ -3,6 +3,7 @@ package asgn2Tests;
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -23,7 +24,6 @@ import asgn2Restaurant.*;
  *
  */
 public class RestaurantPizzaTests {
-	
 	/*
 	* Get customer properly by index works correctly
 	*/
@@ -33,8 +33,7 @@ public class RestaurantPizzaTests {
 		restaurant.processLog("logs/20170101.txt");
 		
 		// Check that this actually works on a Pizza object
-		VegetarianPizza pizza2 = new VegetarianPizza(2, LocalTime.of(19, 0), LocalTime.of(19, 20));
-		
+		VegetarianPizza pizza2 = (VegetarianPizza)LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2");
 		assertEquals(restaurant.getPizzaByIndex(0), pizza2);
 	}
 	
@@ -88,12 +87,60 @@ public class RestaurantPizzaTests {
 	*/
 	@Test
 	public void correctTotalProfit () throws PizzaException, CustomerException, LogHandlerException {
+		double cost = 0;
 		PizzaRestaurant restaurant = new PizzaRestaurant();
 		restaurant.processLog("logs/20170101.txt");
-		assertTrue(restaurant.getTotalProfit() == 29);
+		
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		
+		pizzas.add(LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2"));
+		pizzas.add(LogHandler.createPizza("20:00:00,20:25:00,April O'Neal,0987654321,DNC,3,4,PZM,1"));
+		pizzas.add(LogHandler.createPizza("21:00:00,21:35:00,Oroku Saki,0111222333,PUC,0,0,PZL,3"));
+		
+		for (Pizza pizza : pizzas) {
+			cost += pizza.getOrderProfit();
+		}
+		
+		assertTrue(restaurant.getTotalProfit() == cost);
 	}
 	
+	/*
+	 * Same number of lines in file as nodes in list
+	 * */
+	@Test
+	public void testSizes () throws PizzaException, LogHandlerException, CustomerException {
+		PizzaRestaurant restaurant = new PizzaRestaurant();
+		restaurant.processLog("logs/20170101.txt");
+		
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		
+		pizzas.add(LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2"));
+		pizzas.add(LogHandler.createPizza("20:00:00,20:25:00,April O'Neal,0987654321,DNC,3,4,PZM,1"));
+		pizzas.add(LogHandler.createPizza("21:00:00,21:35:00,Oroku Saki,0111222333,PUC,0,0,PZL,3"));
+		
+		assertEquals(pizzas.size(), restaurant.getNumPizzaOrders());
+	}
 	
+	/*
+	 * Every line is read correctly in the log file
+	 * */
+	@Test
+	public void testEveryLogFile1Line () throws PizzaException, LogHandlerException, CustomerException {
+		PizzaRestaurant restaurant = new PizzaRestaurant();
+		restaurant.processLog("logs/20170101.txt");
+		
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		
+		pizzas.add(LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2"));
+		pizzas.add(LogHandler.createPizza("20:00:00,20:25:00,April O'Neal,0987654321,DNC,3,4,PZM,1"));
+		pizzas.add(LogHandler.createPizza("21:00:00,21:35:00,Oroku Saki,0111222333,PUC,0,0,PZL,3"));
+		
+		
+		for (int i = 0; i < pizzas.size(); i++) {
+			assertEquals(pizzas.get(i), restaurant.getPizzaByIndex(i));
+		}
+		
+	}
 	
 	
 	
