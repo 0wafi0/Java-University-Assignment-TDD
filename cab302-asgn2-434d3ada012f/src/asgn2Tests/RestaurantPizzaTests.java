@@ -23,7 +23,6 @@ import asgn2Restaurant.*;
  *
  */
 public class RestaurantPizzaTests {
-	// TO DO
 	
 	/*
 	* Get customer properly by index works correctly
