@@ -3,12 +3,14 @@ package asgn2Tests;
 
 //Imported packages
 import static org.junit.Assert.*;
+import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.MargheritaPizza;
 import asgn2Pizzas.MeatLoversPizza;
 import asgn2Pizzas.Pizza;
 import asgn2Pizzas.PizzaTopping;
 import asgn2Pizzas.VegetarianPizza;
+import asgn2Restaurant.LogHandler;
 
 import org.junit.Test;
 
@@ -25,70 +27,74 @@ import java.time.LocalTime;
  */
 public class PizzaTests {
 	
-	//---------------------------------------
-	// Testing too many pizzas
-	//---------------------------------------
+	/*
+	* Testing too many pizzas
+	*/
 	@Test (expected = PizzaException.class)
 	public void tooManyPizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(11, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
-	//---------
-	// Almost too many pizzas
-	//---------
+	/*
+	* Almost too many pizzas
+	*/
 	@Test
-	public void almostTooManyPizzas () throws PizzaException {
+	public void almostTooManyPizzas () throws PizzaException, LogHandlerException {
 		MargheritaPizza pizza1 = new MargheritaPizza(9, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MargheritaPizza pizza2 = (MargheritaPizza)LogHandler.createPizza("20:00:00,20:30:00,Oroku Saki,0111222333,PUC,0,0,PZM,9");
+		assertEquals(pizza1, pizza2);
 	}
 
-	//---------------------------------------
-	// Testing too few pizzas
-	//---------------------------------------
+	/*
+	* Testing too few pizzas
+	*/
 	@Test (expected = PizzaException.class)
 	public void tooFewPizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
-	//----------
-	// Testing negative pizzas
-	//----------
+	/*
+	* Testing negative pizzas
+	*/
 	@Test (expected = PizzaException.class)
 	public void negativePizzas () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(-5, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
 	
-	//---------------------------------------
-	// Order time and delivery time too close together
-	//---------------------------------------
+	/*
+	* Order time and delivery time too close together
+	*/
 	
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaTooSoon () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
 	
-	//---------------------------------------
-	// Order time and delivery time too far apart
-	//---------------------------------------
+	/*
+	* Order time and delivery time too far apart
+	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaTooLate () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
 	}
 	
-	//---------------------------------------
-	// Order 1 minute before opening hours
-	//---------------------------------------
+	/*
+	* Order 1 minute before opening hours
+	*/
 	@Test (expected = PizzaException.class)
 	public void orderOneMinuteBeforeHours () throws PizzaException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 9));
 	}
 	
-	//---------
-	// Order 1 minute after opening hours
-	//---------
+	/*
+	* Order 1 minute after opening hours
+	*/
 	@Test
-	public void orderOnOpeningTime () throws PizzaException {
+	public void orderOnOpeningTime () throws PizzaException, LogHandlerException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(19, 0), LocalTime.of(19, 10));
+		MargheritaPizza pizza2 = (MargheritaPizza)LogHandler.createPizza("19:00:00,19:10:00,Oroku Saki,0111222333,PUC,0,0,PZM,1");
+		assertEquals(pizza1, pizza2);
 	}
 	
 	//---------------------------------------
