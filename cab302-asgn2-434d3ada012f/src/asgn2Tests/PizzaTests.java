@@ -32,7 +32,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void tooManyPizzas () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(11, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(11, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
 	/**
@@ -40,8 +40,8 @@ public class PizzaTests {
 	*/
 	@Test
 	public void almostTooManyPizzas () throws PizzaException, LogHandlerException {
-		MargheritaPizza pizza1 = new MargheritaPizza(9, LocalTime.of(20, 5), LocalTime.of(20, 30));
-		MargheritaPizza pizza2 = (MargheritaPizza)LogHandler.createPizza("20:00:00,20:30:00,Oroku Saki,0111222333,PUC,0,0,PZM,9");
+		MeatLoversPizza pizza1 = new MeatLoversPizza(9, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza2 = (MeatLoversPizza)LogHandler.createPizza("20:00:00,20:30:00,Oroku Saki,0111222333,PUC,0,0,PZL,9");
 		assertEquals(pizza1, pizza2);
 	}
 
@@ -50,7 +50,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void tooFewPizzas () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void negativePizzas () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(-5, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(-5, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
 	
@@ -67,7 +67,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaImmediately () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizza1Min () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizza9Min () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 14));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 14));
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class PizzaTests {
 	*/
 	@Test
 	public void deliverPizza10Min () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 15));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 15));
 		
 		assertTrue(pizza1.getCostPerPizza() == pizza1.getOrderCost());
 		assertTrue(pizza1.getOrderPrice() == pizza1.getPricePerPizza());
@@ -104,7 +104,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaTooLate () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void orderOneMinuteBeforeHours () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 9));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 9));
 	}
 	
 	/**
@@ -120,8 +120,8 @@ public class PizzaTests {
 	*/
 	@Test
 	public void orderOnOpeningTime () throws PizzaException, LogHandlerException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(19, 0), LocalTime.of(19, 10));
-		MargheritaPizza pizza2 = (MargheritaPizza)LogHandler.createPizza("19:00:00,19:10:00,Oroku Saki,0111222333,PUC,0,0,PZM,1");
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(19, 0), LocalTime.of(19, 10));
+		MeatLoversPizza pizza2 = (MeatLoversPizza)LogHandler.createPizza("19:00:00,19:10:00,Oroku Saki,0111222333,PUC,0,0,PZL,1");
 		assertEquals(pizza1, pizza2);
 	}
 	
@@ -130,7 +130,7 @@ public class PizzaTests {
 	*/
 	@Test (expected = PizzaException.class)
 	public void orderOnClosingTime () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(23, 0), LocalTime.of(23, 50));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(23, 0), LocalTime.of(23, 50));
 		
 		assertTrue(pizza1.getCostPerPizza() == pizza1.getOrderCost());
 		assertTrue(pizza1.getOrderPrice() == pizza1.getPricePerPizza());
@@ -143,7 +143,7 @@ public class PizzaTests {
 	*/
 	@Test
 	public void orderTimeLegitButDeliveryTimeUnlegitButIKeepGoingBecauseImAGymnast () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(22, 59), LocalTime.of(23, 20));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(22, 59), LocalTime.of(23, 20));
 		
 		assertTrue(pizza1.getCostPerPizza() == pizza1.getOrderCost());
 		assertTrue(pizza1.getOrderPrice() == pizza1.getPricePerPizza());
@@ -156,7 +156,7 @@ public class PizzaTests {
 	 * */
 	@Test (expected = PizzaException.class)
 	public void deliveryTimeLegitButOrderTimeUnlegitSoIMustQuit () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 20));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 20));
 	}
 	
 	/**
@@ -189,8 +189,8 @@ public class PizzaTests {
 	 * */
 	@Test
 	public void pizzaQuantitiesChangePizzaObject () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
-		MargheritaPizza pizza2 = new MargheritaPizza(4, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza2 = new MeatLoversPizza(4, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		
 		assertFalse(pizza1.equals(pizza2));
 	}
@@ -201,8 +201,8 @@ public class PizzaTests {
 	 * */
 	@Test
 	public void pizzaDeliveryTimeDoesNotChangePizzaObject () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
-		MargheritaPizza pizza2 = new MargheritaPizza(3, LocalTime.of(20, 3), LocalTime.of(20, 35));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza2 = new MeatLoversPizza(3, LocalTime.of(20, 3), LocalTime.of(20, 35));
 		
 		assertTrue(pizza1.equals(pizza2));
 	}
@@ -213,9 +213,9 @@ public class PizzaTests {
 	 * */
 	@Test
 	public void correctNumPizzas () throws PizzaException {
-		MargheritaPizza pizza1 = new MargheritaPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
-		MargheritaPizza pizza2 = new MargheritaPizza(4, LocalTime.of(20, 5), LocalTime.of(20, 30));
-		MargheritaPizza pizza3 = new MargheritaPizza(2, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza1 = new MeatLoversPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza2 = new MeatLoversPizza(4, LocalTime.of(20, 5), LocalTime.of(20, 30));
+		MeatLoversPizza pizza3 = new MeatLoversPizza(2, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		
 		assertEquals(pizza1.getQuantity(), 3);
 		assertEquals(pizza2.getQuantity(), 4);

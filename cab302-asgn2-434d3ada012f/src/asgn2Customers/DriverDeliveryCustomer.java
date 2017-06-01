@@ -43,7 +43,7 @@ public class DriverDeliveryCustomer extends Customer {
 		double xDist = super.getLocationX();
 		double yDist = super.getLocationY();
 		
-		return (xDist + yDist);
+		return (Math.abs(xDist) + Math.abs(yDist));
 	}
 
 }
