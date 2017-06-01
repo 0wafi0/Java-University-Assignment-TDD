@@ -134,9 +134,9 @@ public class LogHandlerCustomerTests {
 		ArrayList<Customer> temp = new ArrayList<Customer>();
 		temp = LogHandler.populateCustomerDataset("logs/20170101.txt");
 		assertTrue(temp.size() == 3);
-		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
-		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(2).getCustomerType().equals("PUC"));
+		assertTrue(temp.get(0).getCustomerType().equals("Delivery Driver"));
+		assertTrue(temp.get(1).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(2).getCustomerType().equals("Pick Up Customer"));
 		assertTrue(temp.get(0).getName().equals("Casey Jones"));
 		assertTrue(temp.get(1).getName().equals("April O'Neal"));
 		assertTrue(temp.get(2).getName().equals("Oroku Saki"));
@@ -155,16 +155,16 @@ public class LogHandlerCustomerTests {
 		ArrayList<Customer> temp = new ArrayList<Customer>();
 		temp = LogHandler.populateCustomerDataset("logs/20170102.txt");
 		assertTrue(temp.size() == 10);
-		assertTrue(temp.get(0).getCustomerType().equals("DVC"));
-		assertTrue(temp.get(1).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(2).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(3).getCustomerType().equals("PUC"));
-		assertTrue(temp.get(4).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(5).getCustomerType().equals("PUC"));
-		assertTrue(temp.get(6).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(7).getCustomerType().equals("DNC"));
-		assertTrue(temp.get(8).getCustomerType().equals("DVC"));
-		assertTrue(temp.get(9).getCustomerType().equals("PUC"));
+		assertTrue(temp.get(0).getCustomerType().equals("Delivery Driver"));
+		assertTrue(temp.get(1).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(2).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(3).getCustomerType().equals("Pick Up Customer"));
+		assertTrue(temp.get(4).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(5).getCustomerType().equals("Pick Up Customer"));
+		assertTrue(temp.get(6).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(7).getCustomerType().equals("Delivery Drone"));
+		assertTrue(temp.get(8).getCustomerType().equals("Delivery Driver"));
+		assertTrue(temp.get(9).getCustomerType().equals("Pick Up Customer"));
 		
 		assertTrue(temp.get(0).getName().equals("Emma Brown"));
 		assertTrue(temp.get(1).getName().equals("Lucas Anderson"));
@@ -201,7 +201,7 @@ public class LogHandlerCustomerTests {
 	@Test
 	public void populateCustomerDatasetGeneralTestCase3() throws LogHandlerException, CustomerException { 
 		ArrayList<Customer> temp = new ArrayList<Customer>();
-		temp = LogHandler.populateCustomerDataset("logs/20170102.txt");
+		temp = LogHandler.populateCustomerDataset("logs/20170103.txt");
 		assertTrue(temp.size() == 100);
 	}
 	

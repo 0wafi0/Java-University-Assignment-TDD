@@ -191,7 +191,6 @@ public abstract class Customer {
 	@Override
 	public boolean equals(Object other){
 		Customer otherCustomer = (Customer) other;
-
 		return ( (this.getName().equals(otherCustomer.getName()))  &&
 			(this.getMobileNumber().equals(otherCustomer.getMobileNumber())) && 
 			(this.getLocationX() == otherCustomer.getLocationX()) && 

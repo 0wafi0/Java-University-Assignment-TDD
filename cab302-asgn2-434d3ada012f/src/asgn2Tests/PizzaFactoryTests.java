@@ -19,14 +19,9 @@ import asgn2Pizzas.PizzaFactory;
  */
 public class PizzaFactoryTests {
 	
-	
-	// Make sure you tests for all possible exception.
-	// Have a look at CustomerFactoryTests I have heaps of exception testing
-	// I know it's ANAL but yeah
-	
-	//--------
-	// Make Pizza correctly
-	//--------
+	/** 
+	 * A class that tests the asgn2Pizzas.PizzaFactory class
+	 */
 	@Test
 	public void getPizzaTypeNormally () throws PizzaException {
 		Pizza pizzaVeg = PizzaFactory.getPizza("PZV", 2, LocalTime.of(20, 30), LocalTime.of(20, 50));
@@ -36,15 +31,75 @@ public class PizzaFactoryTests {
 		assertEquals(pizzaVeg.getPizzaType(), "vegetarian");
 		assertEquals(pizzaMarg.getPizzaType(), "margherita");
 		assertEquals(pizzaMeat.getPizzaType(), "meat lover");
+		
+		assertEquals(pizzaVeg.getQuantity(), 2);
+		assertEquals(pizzaMarg.getQuantity(), 3);
+		assertEquals(pizzaMeat.getQuantity(), 4);		
 	}
 	
 	
-	//--------
-	// Attempt invalid pizza code
-	//--------
+	/**
+	 * Invalid Code Name
+	 */
 	@Test (expected = PizzaException.class)
-	public void attemptInvalidPizzaCode () throws PizzaException {
+	public void PizzaFactoryExceptionTests1 () throws PizzaException {
 		PizzaFactory.getPizza("ASD", 3, LocalTime.of(20, 30), LocalTime.of(20, 50));
+	}
+	
+	/**
+	 * Invalid Deliverytime One hour
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionDeliverytimeOneHour () throws PizzaException {
+		PizzaFactory.getPizza("PZV", 3, LocalTime.of(20, 30), LocalTime.of(21, 30));
+	}
+	
+	/**
+	 * Invalid Deliverytime too short too cook
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionDeliverytimetooShort () throws PizzaException {
+		PizzaFactory.getPizza("PZV", 3, LocalTime.of(19, 30), LocalTime.of(19, 32));
+	}
+	
+	/**
+	 * Invalid Deliverytime Delivery time before Order time
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionDeliverytimeDeliveryBeforOrder () throws PizzaException {
+		PizzaFactory.getPizza("PZV", 3, LocalTime.of(19, 30), LocalTime.of(16, 32));
+	}
+	
+	/**
+	 * Invalid Deliverytime Order time too late
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionDeliverytimeOrderAfterClosingHours () throws PizzaException {
+		PizzaFactory.getPizza("PZV", 3, LocalTime.of(23, 0), LocalTime.of(1, 32));
+	}
+	
+	/**
+	 * Invalid Numbers of Pizzas - Negative
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionInvalidPizzaNumbersNegative () throws PizzaException {
+		PizzaFactory.getPizza("PZV", -1, LocalTime.of(22, 0), LocalTime.of(22, 32));
+	}
+	
+	/**
+	 * Invalid Numbers of Pizzas - Zero
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionInvalidPizzaNumbersZero () throws PizzaException {
+		PizzaFactory.getPizza("PZV", 0, LocalTime.of(22, 0), LocalTime.of(22, 32));
+	}
+	
+	/**
+	 * Invalid Numbers of Pizzas - Eleven
+	 */
+	@Test (expected = PizzaException.class)
+	public void PizzaFactoryExceptionInvalidPizzaNumbersEleven () throws PizzaException {
+		PizzaFactory.getPizza("PZM", 11, LocalTime.of(22, 0), LocalTime.of(22, 32));
 	}
 	
 }

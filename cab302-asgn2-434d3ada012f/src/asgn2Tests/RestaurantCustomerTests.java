@@ -42,17 +42,17 @@ public class RestaurantCustomerTests {
 			restaurant.processLog("logs/20170101.txt");
 			assertTrue(restaurant.getNumCustomerOrders() == 3);
 			Customer temp = restaurant.getCustomerByIndex(0);
-			assertTrue(temp.getCustomerType().equals("DVC"));
+			assertTrue(temp.getCustomerType().equals("Delivery Driver"));
 			assertTrue(temp.getName().equals("Casey Jones"));
 			assertEquals(temp.getLocationX(), 5);
 			assertEquals(temp.getLocationY(), 5);
 			temp = restaurant.getCustomerByIndex(1);
-			assertTrue(temp.getCustomerType().equals("DNC"));
+			assertTrue(temp.getCustomerType().equals("Delivery Drone"));
 			assertTrue(temp.getName().equals("April O'Neal"));
 			assertEquals(temp.getLocationX(), 3);
 			assertEquals(temp.getLocationY(), 4);
 			temp = restaurant.getCustomerByIndex(2);
-			assertTrue(temp.getCustomerType().equals("PUC"));
+			assertTrue(temp.getCustomerType().equals("Pick Up Customer"));
 			assertTrue(temp.getName().equals("Oroku Saki"));			
 		}
 		

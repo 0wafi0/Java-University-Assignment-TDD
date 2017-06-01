@@ -153,13 +153,13 @@ public class CustomerFactoryTests {
 	public void GeneralTesting() throws CustomerException {
 		Customer temp = CustomerFactory.getCustomer("DNC", "I am a pokemon", "0582342341", 5, 6);
 		assertTrue(temp != null);
-		assertEquals(temp.getCustomerType(), "DNC");
+		assertEquals(temp.getCustomerType(), "Delivery Drone");
 		temp = CustomerFactory.getCustomer("DVC", "I am a pokemon", "0582342341", 5, 6);
 		assertTrue(temp != null);
-		assertEquals(temp.getCustomerType(), "DVC");
+		assertEquals(temp.getCustomerType(), "Delivery Driver");
 		temp = CustomerFactory.getCustomer("PUC", "I am a pokemon", "0582342341", 0, 0);
 		assertTrue(temp != null);
-		assertEquals(temp.getCustomerType(), "PUC");
+		assertEquals(temp.getCustomerType(), "Pick Up Customer");
 	}
 	
 	

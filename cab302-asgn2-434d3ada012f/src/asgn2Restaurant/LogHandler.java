@@ -44,11 +44,6 @@ import java.util.StringTokenizer;
  */
 public class LogHandler {
 	
-	private static String logFile1 = "logs/20170101.txt";
-	private static String logFile2 = "logs/20170102.txt";
-	private static String logFile3 = "logs/20170103.txt";
-
-
 
 	/**
 	 * Returns an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file.
@@ -61,7 +56,6 @@ public class LogHandler {
 		String line = "";
 		ArrayList<Customer> customerDataset = new ArrayList<Customer>();
 		try {
-
 			FileInputStream inputStream = new FileInputStream(filename);
 			InputStreamReader streamReader = new InputStreamReader(inputStream);
 			BufferedReader bufferReader= new BufferedReader(streamReader);
@@ -127,7 +121,7 @@ public class LogHandler {
 		String[] customerInfo = line.split(",");
 
 		if (customerInfo.length != 9) {
-			throw new LogHandlerException("You require exactly 9 values in each line of the text file!");
+			throw new LogHandlerException();
 		}
 		
 		String name = customerInfo[2];
@@ -140,7 +134,7 @@ public class LogHandler {
 			locationY = Integer.parseInt(customerInfo[6]);
 		}
 		catch (NumberFormatException exception) {
-			throw new LogHandlerException("Cannot parse Integer read from text file.");
+			throw new LogHandlerException("can't parse integer values for coordinates");
 		} 
 		
 		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
@@ -161,16 +155,16 @@ public class LogHandler {
 		String[] data = line.split(",");
 		
         if(data.length != 9) {
-        	throw new LogHandlerException("You require exactly 9 values in each line of the text file!");
+        	throw new LogHandlerException("Error detected in the log");
         }
         for(int i = 0; i < 2; i++) {
         	if(data[i].equals("")) {
-        		throw new LogHandlerException("Don't think you can get away with a \"\"! Be a man, write your logfiles correctly!");
+        		throw new LogHandlerException("Error detected in the log");
         	}
         }
         for(int i = 7; i < 9; i++) {
         	if(data[i].equals("")) {
-        		throw new LogHandlerException("Don't think you can get away with a \"\"! Be a man, write your logfiles correctly!");
+        		throw new LogHandlerException("Error detected in the log");
         	}
         }
         try {
@@ -178,7 +172,7 @@ public class LogHandler {
         } catch(NumberFormatException a) {
         	throw new LogHandlerException("Problem parsing the quantity of pizzas from logfile");
         } catch(DateTimeParseException a) {
-        	throw new LogHandlerException("Incorrectly formatted Time String in logfile");        
+        	throw new LogHandlerException("Problem parsing the Time from logfile");        
         }
         return temp;
 	}

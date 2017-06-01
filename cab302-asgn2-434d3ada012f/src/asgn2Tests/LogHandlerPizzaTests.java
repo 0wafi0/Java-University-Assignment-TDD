@@ -1,5 +1,7 @@
 package asgn2Tests;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -8,7 +10,9 @@ import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.VegetarianPizza;
 import asgn2Restaurant.LogHandler;
+import asgn2Restaurant.PizzaRestaurant;
 
 
 /** A class that tests the methods relating to the creation of Pizza objects in the asgn2Restaurant.LogHander class.
@@ -17,68 +21,86 @@ import asgn2Restaurant.LogHandler;
 * 
 */
 public class LogHandlerPizzaTests {
-	// TO DO	
 	
-	// granted I haven't looked into this in perfect details
-	// but generally speaking this seems fine.
-	// one major thing that may be missing are the tests
+	/**
+	 * Create pizza datasets normally
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 **/
+	@Test(expected = LogHandlerException.class)
+	public void createPizzaDatasetLogHandlerException1 () throws PizzaException, LogHandlerException {
+		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset(" ");
+	}
 	
-	//--------
-	// Create Pizza Dataset normally
-	//--------
+	/**
+	 * Test get populatePizzaDataset
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 */
 	@Test
-	public void createPizzaDataset () throws Exception {
+	public void testPizzaGet () throws CustomerException, PizzaException, LogHandlerException {
 		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset("logs/20170101.txt");
+		// Check that this actually works on a Pizza object
+		VegetarianPizza pizza2 = (VegetarianPizza)LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2");
+		assertEquals(pizza.get(0), pizza2);
 	}
 	
-	
-	//--------
-	// Attempt to create Pizza Dataset with weird filename
-	//--------
-	@Test (expected = LogHandlerException.class)
-	public void createPizzaDatasetDodgyFilename () throws LogHandlerException, PizzaException {
-		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset("log");
-	}
-	
-	//--------
-	// Get customer with valid index
-	//--------
+
+	/**
+	 *	Every line is read correctly in the log file
+	 * */
 	@Test
-	public void getCustomerWithValidIndex () throws CustomerException, PizzaException, LogHandlerException {
-		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset("logs/20170101.txt");
-		pizza.get(0);
+	public void testEveryLogFile1Line () throws PizzaException, LogHandlerException, CustomerException {
+		
+		PizzaRestaurant restaurant = new PizzaRestaurant();
+		restaurant.processLog("logs/20170101.txt");
+		
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		
+		pizzas.add(LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2"));
+		pizzas.add(LogHandler.createPizza("20:00:00,20:25:00,April O'Neal,0987654321,DNC,3,4,PZM,1"));
+		pizzas.add(LogHandler.createPizza("21:00:00,21:35:00,Oroku Saki,0111222333,PUC,0,0,PZL,3"));
+
+		for (int i = 0; i < pizzas.size(); i++) {
+			assertEquals(pizzas.get(i), restaurant.getPizzaByIndex(i));
+		}
 	}
-	
-	
-	//--------
-	// Create Pizza normally
-	//--------
+
+	/**
+	 * Create pizza datasets normally
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 */
 	@Test
 	public void createPizzaNormally () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,9");
 	}
 	
-	
-	//--------
-	// Attempt to make pizza, but only have 8 inputs 
-	//--------
+	/**
+	 *	Attempt to make pizza, but only have 8 inputs 
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 * */
 	@Test (expected = LogHandlerException.class)
-	public void createPizzaNotEnoughInfo () throws PizzaException, LogHandlerException {
+	public void createPizzaNotEnoughInfo () throws PizzaException, LogHandlerException  {
 		LogHandler.createPizza("21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,9");
 	}
 	
-	
-	//--------
-	// Attempt to make pizza, but have 10 inputs
-	//--------
+	/**
+	 *	Attempt to make pizza, but have 10 inputs
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 * */
 	@Test (expected = LogHandlerException.class)
 	public void createPizzatTooMuchInfo () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("aaaaaa,20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,9");
 	}
 	
-	//--------
-	// Attempt to make pizza, but have NO inputs
-	//--------
+	/**
+	 *	Attempt to make pizza, but have NO inputs
+	 * @throws LogHandlerException 
+	 * @throws PizzaException 
+	 * */
 	@Test (expected = LogHandlerException.class)
 	public void createPizzaNoInfo () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("");

@@ -70,7 +70,7 @@ public class PizzaRestaurant {
 	public Customer getCustomerByIndex(int index) throws CustomerException{
 		// TO DO
 		if (index < 0 || index > getNumCustomerOrders()) {
-			throw new CustomerException();
+			throw new CustomerException("Attempting to access customer with invalid index");
 		}
 		return customers.get(index);
 	}

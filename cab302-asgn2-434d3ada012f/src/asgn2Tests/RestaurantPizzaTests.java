@@ -24,23 +24,22 @@ import asgn2Restaurant.*;
  *
  */
 public class RestaurantPizzaTests {
-	/*
-	* Get customer properly by index works correctly
-	*/
+	
+	/**
+	*	Get customer properly by index works correctly
+	**/
 	@Test
 	public void getPizzaByIndexProper () throws LogHandlerException, CustomerException, PizzaException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
-		restaurant.processLog("logs/20170101.txt");
-		
+		restaurant.processLog("logs/20170101.txt");		
 		// Check that this actually works on a Pizza object
 		VegetarianPizza pizza2 = (VegetarianPizza)LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2");
 		assertEquals(restaurant.getPizzaByIndex(0), pizza2);
 	}
 	
-	
-	/*
-	* Get pizza out of range throws pizza exception
-	*/
+	/**
+	*	Get pizza out of range throws pizza exception
+	**/
 	@Test (expected = PizzaException.class)
 	public void attemptOutOfRangeGet () throws PizzaException, CustomerException, LogHandlerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
@@ -51,18 +50,18 @@ public class RestaurantPizzaTests {
 		restaurant.getPizzaByIndex(numPizzas + 5);
 	}
 	
-	/*
+	/**
 	* Get negative pizza throws pizza exception
-	*/
+	**/
 	@Test (expected = PizzaException.class)
 	public void attemptNegativePizza () throws PizzaException, CustomerException, LogHandlerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
 		restaurant.getPizzaByIndex(-5);
 	}
 	
-	/*
-	* Get number of pizzas
-	*/
+	/**
+	* 	Get number of pizzas
+	**/
 	@Test
 	public void  getNumPizzasCorrect () throws PizzaException, CustomerException, LogHandlerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
@@ -70,10 +69,9 @@ public class RestaurantPizzaTests {
 		assertEquals(restaurant.getNumPizzaOrders(), 3);
 	}
 	
-	
-	/*
-	* Reset clears all pizzas
-	*/
+	/**
+	*	Reset clears all pizzas
+	**/
 	@Test
 	public void resetClearsList () throws PizzaException, CustomerException, LogHandlerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
@@ -82,9 +80,9 @@ public class RestaurantPizzaTests {
 		assertEquals(restaurant.getNumPizzaOrders(), 0);
 	}
 	
-	/*
-	* Get the correct total profit for the pizzas
-	*/
+	/**
+	*	Get the correct total profit for the pizzas
+	**/
 	@Test
 	public void correctTotalProfit () throws PizzaException, CustomerException, LogHandlerException {
 		double cost = 0;
@@ -104,7 +102,7 @@ public class RestaurantPizzaTests {
 		assertTrue(restaurant.getTotalProfit() == cost);
 	}
 	
-	/*
+	/**
 	 * Same number of lines in file as nodes in list
 	 * */
 	@Test
@@ -121,26 +119,6 @@ public class RestaurantPizzaTests {
 		assertEquals(pizzas.size(), restaurant.getNumPizzaOrders());
 	}
 	
-	/*
-	 * Every line is read correctly in the log file
-	 * */
-	@Test
-	public void testEveryLogFile1Line () throws PizzaException, LogHandlerException, CustomerException {
-		PizzaRestaurant restaurant = new PizzaRestaurant();
-		restaurant.processLog("logs/20170101.txt");
-		
-		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
-		
-		pizzas.add(LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2"));
-		pizzas.add(LogHandler.createPizza("20:00:00,20:25:00,April O'Neal,0987654321,DNC,3,4,PZM,1"));
-		pizzas.add(LogHandler.createPizza("21:00:00,21:35:00,Oroku Saki,0111222333,PUC,0,0,PZL,3"));
-		
-		
-		for (int i = 0; i < pizzas.size(); i++) {
-			assertEquals(pizzas.get(i), restaurant.getPizzaByIndex(i));
-		}
-		
-	}
 	
 	
 	

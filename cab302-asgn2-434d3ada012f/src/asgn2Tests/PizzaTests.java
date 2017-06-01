@@ -27,7 +27,7 @@ import java.time.LocalTime;
  */
 public class PizzaTests {
 	
-	/*
+	/**
 	* Testing too many pizzas
 	*/
 	@Test (expected = PizzaException.class)
@@ -35,7 +35,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(11, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
-	/*
+	/**
 	* Almost too many pizzas
 	*/
 	@Test
@@ -45,7 +45,7 @@ public class PizzaTests {
 		assertEquals(pizza1, pizza2);
 	}
 
-	/*
+	/**
 	* Testing too few pizzas
 	*/
 	@Test (expected = PizzaException.class)
@@ -53,7 +53,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(0, LocalTime.of(20, 5), LocalTime.of(20, 30));
 	}
 	
-	/*
+	/**
 	* Testing negative pizzas
 	*/
 	@Test (expected = PizzaException.class)
@@ -62,7 +62,7 @@ public class PizzaTests {
 	}
 	
 	
-	/*
+	/**
 	* Order time and delivery time are identical
 	*/
 	@Test (expected = PizzaException.class)
@@ -70,7 +70,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
 	
-	/*
+	/**
 	* Order time and delivery time are 1 minute apart
 	*/
 	@Test (expected = PizzaException.class)
@@ -78,7 +78,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 6));
 	}
 	
-	/*
+	/**
 	* Order time and delivery time are 9 minutes apart
 	*/
 	@Test (expected = PizzaException.class)
@@ -86,7 +86,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(20, 14));
 	}
 	
-	/*
+	/**
 	* Order time and delivery time 10 mins apart
 	*/
 	@Test
@@ -99,8 +99,7 @@ public class PizzaTests {
 		assertTrue(pizza1.getQuantity() == pizza1.getOrderCost() / pizza1.getCostPerPizza());
 	}
 	
-	
-	/*
+	/**
 	* Order time and delivery time too far apart
 	*/
 	@Test (expected = PizzaException.class)
@@ -108,7 +107,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(20, 5), LocalTime.of(21, 5));
 	}
 	
-	/*
+	/**
 	* Order 1 minute before opening hours
 	*/
 	@Test (expected = PizzaException.class)
@@ -116,19 +115,17 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 9));
 	}
 	
-	/*
+	/**
 	* Order exactly on opening hours
 	*/
 	@Test
 	public void orderOnOpeningTime () throws PizzaException, LogHandlerException {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(19, 0), LocalTime.of(19, 10));
 		MargheritaPizza pizza2 = (MargheritaPizza)LogHandler.createPizza("19:00:00,19:10:00,Oroku Saki,0111222333,PUC,0,0,PZM,1");
-		
 		assertEquals(pizza1, pizza2);
-		
 	}
 	
-	/*
+	/**
 	* Order after delivery hours
 	*/
 	@Test (expected = PizzaException.class)
@@ -141,7 +138,7 @@ public class PizzaTests {
 		assertTrue(pizza1.getQuantity() == pizza1.getOrderCost() / pizza1.getCostPerPizza());
 	}
 	
-	/*
+	/**
 	* Order before 11 but delivery is after 11
 	*/
 	@Test
@@ -154,7 +151,7 @@ public class PizzaTests {
 		assertTrue(pizza1.getQuantity() == pizza1.getOrderCost() / pizza1.getCostPerPizza());
 	}
 	
-	/*
+	/**
 	 * Order 1 minute before 7. Delivery after 7. Make sure a PizzaException is thrown.
 	 * */
 	@Test (expected = PizzaException.class)
@@ -162,7 +159,7 @@ public class PizzaTests {
 		MargheritaPizza pizza1 = new MargheritaPizza(1, LocalTime.of(18, 59), LocalTime.of(19, 20));
 	}
 	
-	/*
+	/**
 	 * Test that the pizza types are correct
 	 * */
 	@Test
@@ -176,7 +173,7 @@ public class PizzaTests {
 		assertEquals(pizza3.getPizzaType(), "margherita");
 	}
 	
-	/*
+	/**
 	 * Test that pizza objects are different when you change their type
 	 * */
 	@Test
@@ -187,7 +184,7 @@ public class PizzaTests {
 		assertFalse(pizza1.equals(pizza2));
 	}
 	
-	/*
+	/**
 	 * Test that pizza objects are different when you order different numbers of pizzas
 	 * */
 	@Test
@@ -199,7 +196,7 @@ public class PizzaTests {
 	}
 	
 	
-	/*
+	/**
 	 * Test that the delivery time does not change the pizza objects. It just decides whether or not they are made.
 	 * */
 	@Test
@@ -211,7 +208,7 @@ public class PizzaTests {
 	}
 	
 	
-	/*
+	/**
 	 * Test that the pizza object gets initialized with the correct 
 	 * */
 	@Test
@@ -225,7 +222,7 @@ public class PizzaTests {
 		assertEquals(pizza3.getQuantity(), 2);
 	}
 	
-	/*
+	/**
 	 * Just a general test that each pizza object has the right toppings
 	 * */
 	@Test
@@ -234,7 +231,6 @@ public class PizzaTests {
 		
 		assertTrue(pizza1.containsTopping(PizzaTopping.TOMATO)); 
 		assertTrue(pizza1.containsTopping(PizzaTopping.CHEESE));
-
 		
 		VegetarianPizza pizza2 = new VegetarianPizza(3, LocalTime.of(20, 5), LocalTime.of(20, 30));
 		
@@ -254,7 +250,7 @@ public class PizzaTests {
 	}
 	
 	
-	/*
+	/**
 	 * Just testing that the prices are initialized correctly
 	 * */
 	@Test
@@ -271,7 +267,7 @@ public class PizzaTests {
 	
 	
 	
-	/*
+	/**
 	 * Testing that the costs are initialized correctly
 	 * */
 	@Test
@@ -294,12 +290,12 @@ public class PizzaTests {
 		assertTrue(pizza1.getOrderCost() == 5.0 * 5);
 	}
 	
-//	@Test
-//	public void ordersAreCorrectPrice () throws PizzaException {
-//		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));
-//		assertTrue(pizza1.getOrderCost() == 12 * 5);
-//	}
-//	
+	@Test
+	public void ordersAreCorrectPrice () throws PizzaException {
+		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));
+		assertTrue(pizza1.getOrderPrice() == 12 * 5);
+	}
+	
 	
 	
 	
