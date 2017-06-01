@@ -82,20 +82,6 @@ public abstract class Customer {
 		}
 	}
 	
-	private String convertCustomerType (String code) {
-		String type = "";
-		if (code.equals("DVC")) {
-			type = "Delivery Driver";
-		}
-		if (code.equals("PUC")) {
-			type = "Pick Up Customer";
-		}
-		if (code.equals("DNC")) {
-			type = "Delivery Drone";
-		}
-		return type;
-	}
-	
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.2. 
@@ -120,7 +106,7 @@ public abstract class Customer {
 		this.mobileNumber = mobileNumber;
 		this.locationX = locationX;
 		this.locationY = locationY;
-		this.type = convertCustomerType(type);
+		this.type = type;
 	}
 	
 	/**
