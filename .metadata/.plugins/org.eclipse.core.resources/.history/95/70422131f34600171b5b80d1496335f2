@@ -98,9 +98,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		setLayout(new GridLayout(5, 1));
 	}
 	
-	/**
-	 * Sets the enabled state of each button in the button array to enabled.
-	 * */
 	private void setButtonsEnabledWithinRange (int lower, int upper, boolean enabled) {
 		for (int i = lower; i < upper; i++) {
 			buttons[i].setEnabled(enabled);

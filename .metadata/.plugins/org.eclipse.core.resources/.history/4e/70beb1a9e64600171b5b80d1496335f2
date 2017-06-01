@@ -25,7 +25,6 @@ import java.awt.*;
 
 import javax.swing.*;
 
-
 /**
  * This class is the graphical user interface for the rest of the system. 
  * Currently it is a �dummy� class which extends JFrame and implements Runnable and ActionLister. 
@@ -45,7 +44,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	private static final long serialVersionUID = -7031008862559936404L;
 	
-	// Title
+	// Title (do NOT let this be static!)
 	private String title;
 	
 	// Dimensions
@@ -81,9 +80,12 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 									"Order Profit"};
 	
 	// Files
+	private final int numFiles = 3;
 	private final String filePrefix = "logs/";
 	private final String fileSuffix = ".txt";
 	private String fileChosen;
+	
+	// Storage for Customers and Pizzas
 	
 	
 	private String empty = "--";
@@ -96,11 +98,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		setSize(WIDTH, HEIGHT / 3);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new GridLayout(5, 1));
+		//Panel related code will go here
 	}
 	
-	/**
-	 * Sets the enabled state of each button in the button array to enabled.
-	 * */
 	private void setButtonsEnabledWithinRange (int lower, int upper, boolean enabled) {
 		for (int i = lower; i < upper; i++) {
 			buttons[i].setEnabled(enabled);
@@ -130,9 +130,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		return scrollPane;
 	}
 	
-	/**
-	 * Create a new screen which we just lose straight away
-	 * */
+	
 	private void createSecondScreen () throws CustomerException, PizzaException {
 		JFrame secondScreen = new JFrame("Ello guvna");
 		secondScreen.add(createTable());
@@ -140,7 +138,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		secondScreen.setVisible(true);
 	}
 	
-		
+	
+	
+	/**
+	 * standard action listener for any buttons created
+	 */
+//	private ActionListener createEventListener() {
+//		ActionListener temp = new ActionListener() {
+//			
+//		};
+//		return temp;
+//	}
+	
 	/**
 	 * Load the file
 	 * @throws LogHandlerException 
@@ -208,11 +217,13 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				comboBox.addItem(filePrefix + fileName);
 			}
 		}
-		comboBox.addActionListener(this);
+		
+		comboBox.addItemListener((ItemListener) this);
+		
 		return comboBox;
 	}
 	
-	/**
+	/*
 	 * Simply add all buttons in the button array to the buttonPanel
 	 * */
 	private JPanel createButtonPanel () {
@@ -235,6 +246,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 */
 	@Override
 	public void run() {
+		// TO DO
 		JFrame.setDefaultLookAndFeelDecorated(true); 
 	}
 
@@ -258,10 +270,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		// Set GUI to visible
 		this.setVisible(true);		
 	}
-	
-	/**
-	 * Function to handle all actions in the GUI!
-	 * */
+
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// If the load log file button is clicked...
@@ -303,9 +312,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			setButtonsEnabledWithinRange(1, buttons.length, false);
 			calculatedDist.setText(empty);
 			calculatedProfit.setText(empty);
-		}
-		if (event.getSource().equals(options)) {
-			setButtonsEnabledWithinRange(1, buttons.length, false);
 		}
 	}
 
