@@ -127,7 +127,7 @@ public class LogHandler {
 		String[] customerInfo = line.split(",");
 
 		if (customerInfo.length != 9) {
-			throw new LogHandlerException();
+			throw new LogHandlerException("You require exactly 9 values in each line of the text file!");
 		}
 		
 		String name = customerInfo[2];
@@ -140,7 +140,7 @@ public class LogHandler {
 			locationY = Integer.parseInt(customerInfo[6]);
 		}
 		catch (NumberFormatException exception) {
-			throw new LogHandlerException("can't parse integer values for coordinates");
+			throw new LogHandlerException("Cannot parse Integer read from text file.");
 		} 
 		
 		Customer customer = CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
@@ -161,16 +161,16 @@ public class LogHandler {
 		String[] data = line.split(",");
 		
         if(data.length != 9) {
-        	throw new LogHandlerException("Error detected in the log");
+        	throw new LogHandlerException("You require exactly 9 values in each line of the text file!");
         }
         for(int i = 0; i < 2; i++) {
         	if(data[i].equals("")) {
-        		throw new LogHandlerException("Error detected in the log");
+        		throw new LogHandlerException("Don't think you can get away with a \"\"! Be a man, write your logfiles correctly!");
         	}
         }
         for(int i = 7; i < 9; i++) {
         	if(data[i].equals("")) {
-        		throw new LogHandlerException("Error detected in the log");
+        		throw new LogHandlerException("Don't think you can get away with a \"\"! Be a man, write your logfiles correctly!");
         	}
         }
         try {
@@ -178,7 +178,7 @@ public class LogHandler {
         } catch(NumberFormatException a) {
         	throw new LogHandlerException("Problem parsing the quantity of pizzas from logfile");
         } catch(DateTimeParseException a) {
-        	throw new LogHandlerException("Problem parsing the Time from logfile");        
+        	throw new LogHandlerException("Incorrectly formatted Time String in logfile");        
         }
         return temp;
 	}

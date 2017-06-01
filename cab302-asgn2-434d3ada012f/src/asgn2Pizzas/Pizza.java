@@ -81,16 +81,16 @@ public abstract class Pizza  {
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
 		
 		if(quantity > MAX_PIZZAS || quantity < MIN_PIZZAS) {
-			throw new PizzaException("Invalid number of pizzas");
+			throw new PizzaException("You must order between " + MIN_PIZZAS + " and " + MAX_PIZZAS + " pizzas!");
 		}
 		if(!(type.equals(MARGHERITA)) && !(type.equals(VEGETARIAN)) && !(type.equals(MEAT_LOVERS))) {
-			throw new PizzaException("Invalid type of pizza");
+			throw new PizzaException("Invalid pizza code!");
 		}
 		if(orderTime.isAfter(deliveryTime) || ChronoUnit.MINUTES.between(orderTime, deliveryTime) < MIN_MINUTES || ChronoUnit.HOURS.between(orderTime, deliveryTime) >= MAX_HOURS) {
-			throw new PizzaException("Invalid delivery time!");
+			throw new PizzaException("Pizza must take no less than 10 minutes and no more than 1 hour to make and deliver/pick up.");
 		}
 		if(orderTime.getHour() < EARLIEST_HOUR || orderTime.getHour() >= LATEST_HOUR) {
-			throw new PizzaException("Invalid order time!!");
+			throw new PizzaException("Pizza must be ordered after 7 pm and before 11 pm.");
 		}
 		
 		_quantity = quantity;

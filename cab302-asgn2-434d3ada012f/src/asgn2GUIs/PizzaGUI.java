@@ -81,7 +81,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	// Files
 	private final int numFiles = 3;
-	private final String filePrefix = "logs/2017010";
+	private final String filePrefix = "logs/";
 	private final String fileSuffix = ".txt";
 	private String fileChosen;
 	
@@ -154,8 +154,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 						}
 					} catch (CustomerException | LogHandlerException
 							| PizzaException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
 				}
 				// If the user wants to display data
@@ -163,9 +162,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					try {
 						createSecondScreen();
 					} catch (CustomerException e) {
-						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "CustomerException thrown", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					} catch (PizzaException e) {
-						JOptionPane.showMessageDialog(pizzaGUI, e.toString(), "PizzaException", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
 				}
 				if (event.getActionCommand().equals(buttonNames[2])) {
@@ -193,11 +192,12 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * @throws CustomerException 
 	 * @throws PizzaException 
 	 */
-	private void LoadFile() throws CustomerException, LogHandlerException, PizzaException {
-		//customers = LogHandler.populateCustomerDataset(fileChosen);
-		//pizzas = LogHandler.populatePizzaDataset(fileChosen);
-		restaurant.processLog(fileChosen);
-		
+	private void LoadFile() throws LogHandlerException, PizzaException, CustomerException {
+		try {
+			restaurant.processLog(fileChosen);
+		} catch (CustomerException | PizzaException | LogHandlerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 	
 	/**
@@ -239,14 +239,20 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 	}
 	
+	/*
+	 * 
+	 * 
+	 * */
 	class Listener implements ItemListener {
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
+			
 			// TODO Auto-generated method stub
 			for (int i = 1; i < buttons.length; i++) {
 				buttons[i].setEnabled(false);
 			}
+			
 		}
 		
 	}
@@ -255,10 +261,17 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * Creates the required combo box
 	 */
 	private JComboBox<String> createComboBox() {
+		
+		File folder = new File(filePrefix);
+		File[] allFiles = folder.listFiles();
+		
 		JComboBox<String> comboBox = new JComboBox<String>();
 		
-		for (int i = 0; i < numFiles; i++) {
-			comboBox.addItem(filePrefix + (i + 1) + fileSuffix);
+		for (File file : allFiles) {
+			String fileName = file.getName();
+			if (file.isFile() && fileName.endsWith(fileSuffix)) {
+				comboBox.addItem(filePrefix + fileName);
+			}
 		}
 		
 		comboBox.addItemListener(new Listener());
@@ -301,7 +314,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		restaurant = new PizzaRestaurant();
 		buttons = new JButton[5];
 		this.title = title;
-		
 		createGUI();
 		titleLabel = new JTextField(this.title);
 		calculatedProfit = new JTextField(empty);
