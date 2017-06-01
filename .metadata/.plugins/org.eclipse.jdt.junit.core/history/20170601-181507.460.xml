@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="asgn2Tests" project="cab302-asgn2-434d3ada012f" tests="114" started="114" failures="6" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.CustomerTests" time="0.001">
+    <testcase name="GeneralTestDriverDeliveryCustomer" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException10" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException11" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="GeneralTestAbstractCustomerClass" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery1" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery2" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery3" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery4" classname="asgn2Tests.CustomerTests" time="0.001"/>
+    <testcase name="ExceptionTestDroneDelivery5" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery6" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery7" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery8" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestDroneDelivery9" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer10" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer11" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer1" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer2" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer3" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer4" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer5" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer6" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer7" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer8" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="ExceptionTestPickuUpCustomer9" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="GeneralTestDroneDeliveryCustomer" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="GeneralTestPickUpCustomer" classname="asgn2Tests.CustomerTests" time="0.0">
+      <failure>
+        <expected>Pick Up Customer</expected>
+        <actual>PUC</actual>org.junit.ComparisonFailure: expected:&lt;P[ick Up Customer]&gt; but was:&lt;P[UC]&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:115)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:144)&#13;
+	at asgn2Tests.CustomerTests.GeneralTestPickUpCustomer(CustomerTests.java:165)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="TestConsumerException1" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException2" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException3" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException4" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException5" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException6" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException7" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestConsumerException8" classname="asgn2Tests.CustomerTests" time="0.0"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.PizzaFactoryTests" time="0.005">
+    <testcase name="getPizzaTypeNormally" classname="asgn2Tests.PizzaFactoryTests" time="0.005"/>
+    <testcase name="attemptInvalidPizzaCode" classname="asgn2Tests.PizzaFactoryTests" time="0.0"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.LogHandlerPizzaTests" time="0.018">
+    <testcase name="makeFloatPizzas" classname="asgn2Tests.LogHandlerPizzaTests" time="0.001"/>
+    <testcase name="makeZeroPizzas" classname="asgn2Tests.LogHandlerPizzaTests" time="0.013"/>
+    <testcase name="createPizzaNormally" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="createPizzaNotEnoughInfo" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="createPizzaDatasetDodgyFilename" classname="asgn2Tests.LogHandlerPizzaTests" time="0.001"/>
+    <testcase name="getCustomerWithValidIndex" classname="asgn2Tests.LogHandlerPizzaTests" time="0.001"/>
+    <testcase name="createPizzaDataset" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="makePizzaWithBlankInputs" classname="asgn2Tests.LogHandlerPizzaTests" time="0.001"/>
+    <testcase name="makeNegativePizzas" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="createPizzaNoInfo" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="createPizzatTooMuchInfo" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="makePizzaWithInvalidTime" classname="asgn2Tests.LogHandlerPizzaTests" time="0.0"/>
+    <testcase name="makeTooManyPizzas" classname="asgn2Tests.LogHandlerPizzaTests" time="0.001"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.RestaurantPizzaTests" time="0.008">
+    <testcase name="attemptNegativePizza" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="attemptOutOfRangeGet" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="testSizes" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="getPizzaByIndexProper" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="resetClearsList" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="testEveryLogFile1Line" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="getNumPizzasCorrect" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+    <testcase name="correctTotalProfit" classname="asgn2Tests.RestaurantPizzaTests" time="0.001"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.RestaurantCustomerTests" time="0.01">
+    <testcase name="TestgetNumCustomerOrders" classname="asgn2Tests.RestaurantCustomerTests" time="0.008"/>
+    <testcase name="TestgetPizzaByIndexGeneral" classname="asgn2Tests.RestaurantCustomerTests" time="0.001">
+      <failure>java.lang.AssertionError&#13;
+	at org.junit.Assert.fail(Assert.java:86)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:52)&#13;
+	at asgn2Tests.RestaurantCustomerTests.TestgetPizzaByIndexGeneral(RestaurantCustomerTests.java:45)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="TestgetPizzaByIndexException" classname="asgn2Tests.RestaurantCustomerTests" time="0.001"/>
+    <testcase name="TestgetTotalDeliveryDistance" classname="asgn2Tests.RestaurantCustomerTests" time="0.0"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.LogHandlerCustomerTests" time="0.003">
+    <testcase name="populateCustomerDatasetGeneralTestCase1" classname="asgn2Tests.LogHandlerCustomerTests" time="0.001">
+      <failure>java.lang.AssertionError&#13;
+	at org.junit.Assert.fail(Assert.java:86)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:52)&#13;
+	at asgn2Tests.LogHandlerCustomerTests.populateCustomerDatasetGeneralTestCase1(LogHandlerCustomerTests.java:137)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="populateCustomerDatasetGeneralTestCase2" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0">
+      <failure>java.lang.AssertionError&#13;
+	at org.junit.Assert.fail(Assert.java:86)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:52)&#13;
+	at asgn2Tests.LogHandlerCustomerTests.populateCustomerDatasetGeneralTestCase2(LogHandlerCustomerTests.java:158)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="populateCustomerDatasetGeneralTestCase3" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0">
+      <failure>java.lang.AssertionError&#13;
+	at org.junit.Assert.fail(Assert.java:86)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:52)&#13;
+	at asgn2Tests.LogHandlerCustomerTests.populateCustomerDatasetGeneralTestCase3(LogHandlerCustomerTests.java:205)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="TestCreateCustomerException1" classname="asgn2Tests.LogHandlerCustomerTests" time="0.001"/>
+    <testcase name="TestCreateCustomerException2" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerException3" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerException4" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerException5" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerException6" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerException7" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="populateCustomerDatasetException1" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerGeneral1" classname="asgn2Tests.LogHandlerCustomerTests" time="0.0"/>
+    <testcase name="TestCreateCustomerGeneral2" classname="asgn2Tests.LogHandlerCustomerTests" time="0.001"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.PizzaTests" time="0.002">
+    <testcase name="orderOnOpeningTime" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliveryTimeLegitButOrderTimeUnlegitSoIMustQuit" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="tooFewPizzas" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="orderOnClosingTime" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzasContainCorrectToppings" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="almostTooManyPizzas" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliverPizza1Min" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliverPizza9Min" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="ordersAreCorrectCost" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="tooManyPizzas" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliverPizza10Min" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="orderTimeLegitButDeliveryTimeUnlegitButIKeepGoingBecauseImAGymnast" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="successfulPizzaType" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzaTypesAreNotAllSame" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzasAreCorrectCost" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="correctNumPizzas" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzaDeliveryTimeDoesNotChangePizzaObject" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzaQuantitiesChangePizzaObject" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliverPizzaImmediately" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="pizzasAreCorrectPrice" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="deliverPizzaTooLate" classname="asgn2Tests.PizzaTests" time="0.001"/>
+    <testcase name="orderOneMinuteBeforeHours" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="negativePizzas" classname="asgn2Tests.PizzaTests" time="0.0"/>
+  </testsuite>
+  <testsuite name="asgn2Tests.CustomerFactoryTests" time="0.002">
+    <testcase name="GeneralTesting" classname="asgn2Tests.CustomerFactoryTests" time="0.0">
+      <failure>
+        <expected>Delivery Drone</expected>
+        <actual>DNC</actual>org.junit.ComparisonFailure: expected:&lt;D[elivery Drone]&gt; but was:&lt;D[NC]&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:115)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:144)&#13;
+	at asgn2Tests.CustomerFactoryTests.GeneralTesting(CustomerFactoryTests.java:156)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="TestCostumerFactoryException10" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException11" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException12" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException13" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException14" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException15" classname="asgn2Tests.CustomerFactoryTests" time="0.001"/>
+    <testcase name="TestCostumerFactoryException16" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException1" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException2" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException3" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException4" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException5" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException6" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException7" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestCostumerFactoryException8" classname="asgn2Tests.CustomerFactoryTests" time="0.001"/>
+    <testcase name="TestCostumerFactoryException9" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+  </testsuite>
+</testrun>

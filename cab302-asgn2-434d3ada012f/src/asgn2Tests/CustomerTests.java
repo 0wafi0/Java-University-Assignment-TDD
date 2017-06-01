@@ -117,14 +117,14 @@ public class CustomerTests {
 		assertTrue(temp.equals(temp1));
 		assertEquals(temp.getLocationX(), 10);
 		assertEquals(temp.getLocationY(), 10);
-		assertEquals(temp.getCustomerType(), "DVC");
+		assertEquals(temp.getCustomerType(), "Delivery Driver");
 		assertEquals(temp.getMobileNumber(), "0232146594");
 		assertEquals(temp.getName(), "Wafi");
 		assertTrue(temp1.equals(temp));		
 		Customer temp2 = new DriverDeliveryCustomer("Ralph", "0232143494", 2, 0);
 		assertEquals(temp2.getLocationX(), 2);
 		assertEquals(temp2.getLocationY(), 0);
-		assertEquals(temp2.getCustomerType(), "DVC");
+		assertEquals(temp2.getCustomerType(), "Delivery Driver");
 		assertEquals(temp2.getMobileNumber(), "0232143494");
 		assertEquals(temp2.getName(), "Ralph");		
 	}
@@ -135,7 +135,7 @@ public class CustomerTests {
 	@Test
 	public void GeneralTestDriverDeliveryCustomer() throws CustomerException {
 		Customer temp = new DriverDeliveryCustomer("Wafi", "0232146594", 8, 10);
-		assertEquals(temp.getCustomerType(), "DVC");
+		assertEquals(temp.getCustomerType(), "Delivery Driver");
 		assertEquals(temp.getDeliveryDistance(), 18, 0);			
 		assertEquals(temp.getLocationX(), 8);
 		assertEquals(temp.getLocationY(), 10);
@@ -148,7 +148,7 @@ public class CustomerTests {
 	public void GeneralTestDroneDeliveryCustomer() throws CustomerException {
 		Customer temp = new DroneDeliveryCustomer("Wafi", "0232146594", 10, 3);
 		assertEquals(temp.getDeliveryDistance(), Math.sqrt(100+9), 0);		
-		assertEquals(temp.getCustomerType(), "DNC");
+		assertEquals(temp.getCustomerType(), "Delivery Drone");
 		assertEquals(temp.getMobileNumber(), "0232146594");
 		assertEquals(temp.getName(), "Wafi");
 		assertEquals(temp.getLocationX(), 10);
@@ -162,7 +162,7 @@ public class CustomerTests {
 	public void GeneralTestPickUpCustomer() throws CustomerException {
 		Customer temp = new PickUpCustomer("Wafi", "0232146594", 0, 0);
 		assertEquals(temp.getDeliveryDistance(), 0, 0);		
-		assertEquals(temp.getCustomerType(), "PUC");
+		assertEquals(temp.getCustomerType(), "Pick Up Customer");
 		assertEquals(temp.getMobileNumber(), "0232146594");
 		assertEquals(temp.getName(), "Wafi");
 		assertEquals(temp.getLocationX(), 0);
