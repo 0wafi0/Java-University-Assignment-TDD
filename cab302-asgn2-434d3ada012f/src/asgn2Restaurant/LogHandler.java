@@ -121,7 +121,7 @@ public class LogHandler {
 		String[] customerInfo = line.split(",");
 
 		if (customerInfo.length != 9) {
-			throw new LogHandlerException();
+			throw new LogHandlerException("Incorrect number of inputs.");
 		}
 		
 		String name = customerInfo[2];

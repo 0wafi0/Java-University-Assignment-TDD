@@ -44,7 +44,7 @@ public abstract class Customer {
 		for (int i = 0; i < string.length(); i++) {
 			char currentChar = string.charAt(i);
 			// If it is out of range of 0 - 9 in ASCII table, then it is not numeric
-			numeric &= (currentChar > '0' || currentChar < '9');
+			numeric &= Character.isDigit(currentChar);
 		}
 		
 		return numeric;
@@ -56,29 +56,29 @@ public abstract class Customer {
 		
 		// Check if all chars in mobileNumber are numeric...
 		if (!allNumeric(mobileNumber)) {
-			throw new CustomerException();
+			throw new CustomerException("Non-numeric mobile number!");
 		}
 		
 		// Mobile Number must be 10 chars long and start with 0
 		if (mobileNumber.length() != MOBILE_LENGTH || mobileNumber.charAt(0) != '0') {
-			throw new CustomerException();
+			throw new CustomerException("Invalid mobile number!");
 		}
 		// Customer name must be 1 - 20 characters long. Cannot only be white spaces.
 		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH || countCharacterInString(name, SPACE) == name.length()) {
-			throw new CustomerException();
+			throw new CustomerException("Invalid name!");
 		}
 		// Ensure location IS 0,0 when type is pickup
 		if (type.equals(PICK_UP) && (locationX != 0 || locationY != 0)) {
-			throw new CustomerException();
+			throw new CustomerException("Invalid location!");
 		}
 		
 		// Ensure location ISN'T 0,0 when type is delivery
  		if ((type.equals(DRONE_DELIVER) || type.equals(DRIVER_DELIVER)) && (locationX == 0 && locationY == 0)) {
-			throw new CustomerException();
+			throw new CustomerException("Invalid location!");
 		}
 		// Ensure locationX and locationY are both less than or equal to 10
 		if (locationX > MAX_DISTANCE || locationY > MAX_DISTANCE) {
-			throw new CustomerException();
+			throw new CustomerException("Invalid x or y distance!");
 		}
 	}
 	
