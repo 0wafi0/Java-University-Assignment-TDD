@@ -52,7 +52,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	public static final int HEIGHT = 600;
 	
 	// Screen
-	private JTextField titleLabel;
+	private JLabel titleLabel;
 	private JTextField calculatedProfit;
 	private JTextField calculatedDist;
 	private Container pizzaGUI;
@@ -101,8 +101,11 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		//Panel related code will go here
 	}
 	
-	
-	
+	private void setButtonsEnabledWithinRange (int lower, int upper, boolean enabled) {
+		for (int i = lower; i < upper; i++) {
+			buttons[i].setEnabled(enabled);
+		}
+	}
 	
 	private JScrollPane createTable () throws CustomerException, PizzaException {
 		String[][] orders = new String[restaurant.getNumCustomerOrders()][10];
@@ -136,6 +139,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	}
 	
 	
+	
 	/**
 	 * standard action listener for any buttons created
 	 */
@@ -145,17 +149,21 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			public void actionPerformed(ActionEvent event) {
 				// If the load log file button is clicked...
 				if (event.getActionCommand().equals(buttonNames[0])) {
+					fileChosen = options.getSelectedItem().toString();
+					setButtonsEnabledWithinRange(1, buttons.length, true);
 					try {
-						fileChosen = options.getSelectedItem().toString();
 						LoadFile();
-						// Enable the rest of the buttons
-						for (int i = 1; i < buttons.length; i++) {
-							buttons[i].setEnabled(true);
-						}
-					} catch (CustomerException | LogHandlerException
-							| PizzaException e) {
+					} catch (LogHandlerException e) {
 						JOptionPane.showMessageDialog(null, e.getMessage());
+						setButtonsEnabledWithinRange(1, buttons.length, false);
+					} catch (CustomerException e) {
+						JOptionPane.showMessageDialog(null, e.getMessage());
+						setButtonsEnabledWithinRange(1, buttons.length, false);
+					} catch (PizzaException e) {
+						JOptionPane.showMessageDialog(null, e.getMessage());
+						setButtonsEnabledWithinRange(1, buttons.length, false);
 					}
+					
 				}
 				// If the user wants to display data
 				if(event.getActionCommand().equals(buttonNames[1])) {
@@ -175,9 +183,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				}
 				if (event.getActionCommand().equals(buttonNames[4])) {
 					restaurant.resetDetails();
-					for (int i = 1; i < buttons.length; i++) {
-						buttons[i].setEnabled(false);
-					}
+					setButtonsEnabledWithinRange(1, buttons.length, false);
 					calculatedDist.setText(empty);
 					calculatedProfit.setText(empty);
 				}
@@ -226,17 +232,13 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		distanceField.add(new Label("Calculated Distance"), BorderLayout.SOUTH);
 		distanceField.add(calculatedDist, BorderLayout.SOUTH);
 		
-		
 		pizzaGUI = this.getContentPane();
 		pizzaGUI.add(titleLabel, BorderLayout.NORTH);
 		pizzaGUI.add(options, BorderLayout.SOUTH);
 		pizzaGUI.add(buttonPanel, BorderLayout.SOUTH);
 		pizzaGUI.add(profitField, BorderLayout.SOUTH);
 		pizzaGUI.add(distanceField, BorderLayout.SOUTH);
-		
-		
-		
-		
+			
 	}
 	
 	/*
@@ -244,17 +246,10 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * 
 	 * */
 	class Listener implements ItemListener {
-
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			
-			// TODO Auto-generated method stub
-			for (int i = 1; i < buttons.length; i++) {
-				buttons[i].setEnabled(false);
-			}
-			
+			setButtonsEnabledWithinRange(1, buttons.length, false);
 		}
-		
 	}
 	
 	/**
@@ -278,6 +273,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		return comboBox;
 	}
+	
+	
 	
 	
 	private JPanel createButtonPanel () {
@@ -305,6 +302,11 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		JFrame.setDefaultLookAndFeelDecorated(true); 
 	}
 	
+	private void createTitle () {
+		titleLabel = new JLabel(this.title, SwingConstants.CENTER);
+	}
+	
+	
 	/**
 	 * Creates a new Pizza GUI with the specified title 
 	 * @param title - The title for the supertype JFrame
@@ -315,7 +317,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		buttons = new JButton[5];
 		this.title = title;
 		createGUI();
-		titleLabel = new JTextField(this.title);
+		createTitle();
 		calculatedProfit = new JTextField(empty);
 		calculatedDist = new JTextField(empty);
 		buttonPanel = createButtonPanel();
@@ -323,6 +325,12 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		addEverythingToScreen();
 		// Set GUI to visible
 		this.setVisible(true);		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
