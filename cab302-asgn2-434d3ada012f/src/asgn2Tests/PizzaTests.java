@@ -29,6 +29,7 @@ public class PizzaTests {
 	
 	/**
 	* Testing too many pizzas
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void tooManyPizzas () throws PizzaException {
@@ -37,6 +38,8 @@ public class PizzaTests {
 	
 	/**
 	* Almost too many pizzas
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
+	* @throws LogHandlerException Thrown if any problem is encountered in passing the sling to the LogHandler.createPizza() function
 	*/
 	@Test
 	public void almostTooManyPizzas () throws PizzaException, LogHandlerException {
@@ -47,6 +50,7 @@ public class PizzaTests {
 
 	/**
 	* Testing too few pizzas
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void tooFewPizzas () throws PizzaException {
@@ -55,6 +59,7 @@ public class PizzaTests {
 	
 	/**
 	* Testing negative pizzas
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void negativePizzas () throws PizzaException {
@@ -64,6 +69,7 @@ public class PizzaTests {
 	
 	/**
 	* Order time and delivery time are identical
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaImmediately () throws PizzaException {
@@ -72,6 +78,7 @@ public class PizzaTests {
 	
 	/**
 	* Order time and delivery time are 1 minute apart
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizza1Min () throws PizzaException {
@@ -80,6 +87,8 @@ public class PizzaTests {
 	
 	/**
 	* Order time and delivery time are 9 minutes apart
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizza9Min () throws PizzaException {
@@ -88,6 +97,8 @@ public class PizzaTests {
 	
 	/**
 	* Order time and delivery time 10 mins apart
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test
 	public void deliverPizza10Min () throws PizzaException {
@@ -101,6 +112,8 @@ public class PizzaTests {
 	
 	/**
 	* Order time and delivery time too far apart
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void deliverPizzaTooLate () throws PizzaException {
@@ -109,6 +122,8 @@ public class PizzaTests {
 	
 	/**
 	* Order 1 minute before opening hours
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void orderOneMinuteBeforeHours () throws PizzaException {
@@ -117,6 +132,10 @@ public class PizzaTests {
 	
 	/**
 	* Order exactly on opening hours
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
+	* @throws LogHandlerException Thrown if any problem is encountered in passing
+	* the sling to the LogHandler.createPizza() function
 	*/
 	@Test
 	public void orderOnOpeningTime () throws PizzaException, LogHandlerException {
@@ -127,6 +146,8 @@ public class PizzaTests {
 	
 	/**
 	* Order after delivery hours
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test (expected = PizzaException.class)
 	public void orderOnClosingTime () throws PizzaException {
@@ -140,6 +161,8 @@ public class PizzaTests {
 	
 	/**
 	* Order before 11 but delivery is after 11
+	* @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	* constructor or its underlying constructor within the context
 	*/
 	@Test
 	public void orderTimeLegitButDeliveryTimeUnlegitButIKeepGoingBecauseImAGymnast () throws PizzaException {
@@ -153,6 +176,8 @@ public class PizzaTests {
 	
 	/**
 	 * Order 1 minute before 7. Delivery after 7. Make sure a PizzaException is thrown.
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test (expected = PizzaException.class)
 	public void deliveryTimeLegitButOrderTimeUnlegitSoIMustQuit () throws PizzaException {
@@ -161,6 +186,8 @@ public class PizzaTests {
 	
 	/**
 	 * Test that the pizza types are correct
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void successfulPizzaType () throws PizzaException {
@@ -175,6 +202,8 @@ public class PizzaTests {
 	
 	/**
 	 * Test that pizza objects are different when you change their type
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzaTypesAreNotAllSame () throws PizzaException {
@@ -186,6 +215,8 @@ public class PizzaTests {
 	
 	/**
 	 * Test that pizza objects are different when you order different numbers of pizzas
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzaQuantitiesChangePizzaObject () throws PizzaException {
@@ -198,6 +229,8 @@ public class PizzaTests {
 	
 	/**
 	 * Test that the delivery time does not change the pizza objects. It just decides whether or not they are made.
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzaDeliveryTimeDoesNotChangePizzaObject () throws PizzaException {
@@ -210,6 +243,8 @@ public class PizzaTests {
 	
 	/**
 	 * Test that the pizza object gets initialized with the correct 
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void correctNumPizzas () throws PizzaException {
@@ -224,6 +259,8 @@ public class PizzaTests {
 	
 	/**
 	 * Just a general test that each pizza object has the right toppings
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzasContainCorrectToppings () throws PizzaException {
@@ -252,6 +289,8 @@ public class PizzaTests {
 	
 	/**
 	 * Just testing that the prices are initialized correctly
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzasAreCorrectPrice () throws PizzaException {
@@ -269,6 +308,8 @@ public class PizzaTests {
 	
 	/**
 	 * Testing that the costs are initialized correctly
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
 	 * */
 	@Test
 	public void pizzasAreCorrectCost () throws PizzaException {
@@ -284,12 +325,22 @@ public class PizzaTests {
 		
 	}
 	
+	/**
+	 * Testing That orders are good
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
+	 * */
 	@Test
 	public void ordersAreCorrectCost () throws PizzaException {
 		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));
 		assertTrue(pizza1.getOrderCost() == 5.0 * 5);
 	}
 	
+	/**
+	 * Testing that orders give the right price
+	 * @throws PizzaException Thrown if invalid parameters are pissed in the pizza
+	 * constructor or its underlying constructor within the context
+	 * */
 	@Test
 	public void ordersAreCorrectPrice () throws PizzaException {
 		MeatLoversPizza pizza1 = new MeatLoversPizza(5, LocalTime.of(19, 0), LocalTime.of(19, 10));

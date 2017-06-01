@@ -25,16 +25,20 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Empty string
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
-	public void TestCreateCustomerException1() throws LogHandlerException, CustomerException {
+	public void TestCreateCustomerException1() throws CustomerException, LogHandlerException  {
 		LogHandler.createCustomer("");
 	}
 	 
 	/**
 	 * Try one of the lines from the Logfiles without a couple of entries
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file  
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException2() throws LogHandlerException, CustomerException {
@@ -43,7 +47,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Try one of the lines from the Logfiles replace the y coordinate with a letter
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException3() throws LogHandlerException, CustomerException {
@@ -52,7 +58,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Try one of the lines from the Logfiles replace one of the y coordinate with a number and letters
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file 
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException4() throws LogHandlerException, CustomerException {
@@ -61,7 +69,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException5() throws LogHandlerException, CustomerException {
@@ -70,7 +80,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException6() throws LogHandlerException, CustomerException {
@@ -79,7 +91,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Try one of the lines from the Logfiles replace one of the x coordinate with a number and letters
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void TestCreateCustomerException7() throws LogHandlerException, CustomerException {
@@ -92,7 +106,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Test CreateCustomer with a DVC test case
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void TestCreateCustomerGeneral1() throws LogHandlerException, CustomerException {
@@ -103,7 +119,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Test CreateCustomer with a DVC test case
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void TestCreateCustomerGeneral2() throws LogHandlerException, CustomerException {
@@ -118,7 +136,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * No File
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test(expected = LogHandlerException.class)
 	public void populateCustomerDatasetException1() throws LogHandlerException, CustomerException {
@@ -127,7 +147,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Test with the 20170101.txt
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void populateCustomerDatasetGeneralTestCase1() throws LogHandlerException, CustomerException {				
@@ -148,7 +170,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Test with the 20170102.txt
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void populateCustomerDatasetGeneralTestCase2() throws LogHandlerException, CustomerException {				
@@ -196,7 +220,9 @@ public class LogHandlerCustomerTests {
 	
 	/**
 	 * Test with the 20170103.txt
-	 * @throws CustomerException 
+	 * @throws LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws CustomerException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void populateCustomerDatasetGeneralTestCase3() throws LogHandlerException, CustomerException { 

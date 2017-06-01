@@ -26,10 +26,13 @@ import asgn2Restaurant.*;
 public class RestaurantPizzaTests {
 	
 	/**
-	*	Get customer properly by index works correctly
+	* Get customer properly by index works correctly
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test
-	public void getPizzaByIndexProper () throws LogHandlerException, CustomerException, PizzaException {
+	public void getPizzaByIndexProper () throws PizzaException, LogHandlerException, CustomerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();
 		restaurant.processLog("logs/20170101.txt");		
 		// Check that this actually works on a Pizza object
@@ -38,7 +41,10 @@ public class RestaurantPizzaTests {
 	}
 	
 	/**
-	*	Get pizza out of range throws pizza exception
+	* Get pizza out of range throws pizza exception
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test (expected = PizzaException.class)
 	public void attemptOutOfRangeGet () throws PizzaException, CustomerException, LogHandlerException {
@@ -52,6 +58,9 @@ public class RestaurantPizzaTests {
 	
 	/**
 	* Get negative pizza throws pizza exception
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test (expected = PizzaException.class)
 	public void attemptNegativePizza () throws PizzaException, CustomerException, LogHandlerException {
@@ -60,7 +69,10 @@ public class RestaurantPizzaTests {
 	}
 	
 	/**
-	* 	Get number of pizzas
+	* Get number of pizzas
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test
 	public void  getNumPizzasCorrect () throws PizzaException, CustomerException, LogHandlerException {
@@ -70,7 +82,10 @@ public class RestaurantPizzaTests {
 	}
 	
 	/**
-	*	Reset clears all pizzas
+	* Reset clears all pizzas
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test
 	public void resetClearsList () throws PizzaException, CustomerException, LogHandlerException {
@@ -81,7 +96,10 @@ public class RestaurantPizzaTests {
 	}
 	
 	/**
-	*	Get the correct total profit for the pizzas
+	* Get the correct total profit for the pizzas
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 	**/
 	@Test
 	public void correctTotalProfit () throws PizzaException, CustomerException, LogHandlerException {
@@ -103,8 +121,12 @@ public class RestaurantPizzaTests {
 	}
 	
 	/**
-	 * Same number of lines in file as nodes in list
-	 * */
+	* Same number of lines in file as nodes in list
+	* @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+	* @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+	* @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
+	* 
+	* */
 	@Test
 	public void testSizes () throws PizzaException, LogHandlerException, CustomerException {
 		PizzaRestaurant restaurant = new PizzaRestaurant();

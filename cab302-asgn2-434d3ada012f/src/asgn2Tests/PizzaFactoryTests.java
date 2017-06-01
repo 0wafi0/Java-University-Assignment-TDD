@@ -20,7 +20,9 @@ import asgn2Pizzas.PizzaFactory;
 public class PizzaFactoryTests {
 	
 	/** 
-	 * A class that tests the asgn2Pizzas.PizzaFactory class
+	 * Testing getPizzaTypeNormally
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test
 	public void getPizzaTypeNormally () throws PizzaException {
@@ -40,6 +42,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Code Name
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionTests1 () throws PizzaException {
@@ -48,6 +52,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Deliverytime One hour
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionDeliverytimeOneHour () throws PizzaException {
@@ -56,6 +62,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Deliverytime too short too cook
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionDeliverytimetooShort () throws PizzaException {
@@ -64,7 +72,9 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Deliverytime Delivery time before Order time
-	 */
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
+	 */	
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionDeliverytimeDeliveryBeforOrder () throws PizzaException {
 		PizzaFactory.getPizza("PZV", 3, LocalTime.of(19, 30), LocalTime.of(16, 32));
@@ -72,6 +82,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Deliverytime Order time too late
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionDeliverytimeOrderAfterClosingHours () throws PizzaException {
@@ -80,6 +92,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Numbers of Pizzas - Negative
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionInvalidPizzaNumbersNegative () throws PizzaException {
@@ -88,6 +102,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Numbers of Pizzas - Zero
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionInvalidPizzaNumbersZero () throws PizzaException {
@@ -96,6 +112,8 @@ public class PizzaFactoryTests {
 	
 	/**
 	 * Invalid Numbers of Pizzas - Eleven
+	 * @throws PizzaException in this context if any invalid parameters
+	 * are passed into getPizza() function
 	 */
 	@Test (expected = PizzaException.class)
 	public void PizzaFactoryExceptionInvalidPizzaNumbersEleven () throws PizzaException {

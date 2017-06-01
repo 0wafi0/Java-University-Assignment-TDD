@@ -24,8 +24,9 @@ public class LogHandlerPizzaTests {
 	
 	/**
 	 * Create pizza datasets normally
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 **/
 	@Test(expected = LogHandlerException.class)
 	public void createPizzaDatasetLogHandlerException1 () throws PizzaException, LogHandlerException {
@@ -34,11 +35,12 @@ public class LogHandlerPizzaTests {
 	
 	/**
 	 * Test get populatePizzaDataset
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file 
 	 */
 	@Test
-	public void testPizzaGet () throws CustomerException, PizzaException, LogHandlerException {
+	public void testPizzaGet () throws PizzaException, LogHandlerException {
 		ArrayList<Pizza> pizza = LogHandler.populatePizzaDataset("logs/20170101.txt");
 		// Check that this actually works on a Pizza object
 		VegetarianPizza pizza2 = (VegetarianPizza)LogHandler.createPizza("19:00:00,19:20:00,Casey Jones,0123456789,DVC,5,5,PZV,2");
@@ -48,9 +50,13 @@ public class LogHandlerPizzaTests {
 
 	/**
 	 *	Every line is read correctly in the log file
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * @throws CustomerException thrown due to processLog
 	 * */
 	@Test
-	public void testEveryLogFile1Line () throws PizzaException, LogHandlerException, CustomerException {
+	public void testEveryLogFile1Line () throws CustomerException, PizzaException, LogHandlerException {
 		
 		PizzaRestaurant restaurant = new PizzaRestaurant();
 		restaurant.processLog("logs/20170101.txt");
@@ -68,8 +74,9 @@ public class LogHandlerPizzaTests {
 
 	/**
 	 * Create pizza datasets normally
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 */
 	@Test
 	public void createPizzaNormally () throws PizzaException, LogHandlerException {
@@ -78,8 +85,9 @@ public class LogHandlerPizzaTests {
 	
 	/**
 	 *	Attempt to make pizza, but only have 8 inputs 
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 * */
 	@Test (expected = LogHandlerException.class)
 	public void createPizzaNotEnoughInfo () throws PizzaException, LogHandlerException  {
@@ -88,8 +96,9 @@ public class LogHandlerPizzaTests {
 	
 	/**
 	 *	Attempt to make pizza, but have 10 inputs
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 * */
 	@Test (expected = LogHandlerException.class)
 	public void createPizzatTooMuchInfo () throws PizzaException, LogHandlerException {
@@ -98,58 +107,77 @@ public class LogHandlerPizzaTests {
 	
 	/**
 	 *	Attempt to make pizza, but have NO inputs
-	 * @throws LogHandlerException 
-	 * @throws PizzaException 
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
 	 * */
 	@Test (expected = LogHandlerException.class)
 	public void createPizzaNoInfo () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("");
 	}
 	
-	//--------
-	// Attempt to make one too many pizzas
-	//--------
+	/**
+	 * Attempt to make one too many pizzas
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = PizzaException.class)
 	public void makeTooManyPizzas () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,11");
 	}
 	
-	//--------
-	// Attempt to make negative pizzas
-	//--------
+	/**
+	 * Attempt to make negative pizzas
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = PizzaException.class)
 	public void makeNegativePizzas () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,-1");
 	}
 	
-	//--------
-	// Attempt to make zero pizzas
-	//--------
+	/**
+	 * Attempt to make zero pizzas
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = PizzaException.class)
 	public void makeZeroPizzas () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,0");
 	}
 	
-	//--------
-	// Attempt to make float pizzas
-	//--------
+	/**
+	 *  Attempt to make float pizzas
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = LogHandlerException.class)
 	public void makeFloatPizzas () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza("20:47:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,4.5");
 	}
-		
-	//--------
-	// Attempt a weirdly formatted time string
-	//--------
+	
+	/**
+	 * Attempt a weirdly formatted time string
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = LogHandlerException.class)
 	public void makePizzaWithInvalidTime () throws LogHandlerException, PizzaException {
 		LogHandler.createPizza("2047:00,21:11:00,Caden Kumar,0862001010,PUC,0,0,PZL,4.5");
 		LogHandler.createPizza("20:47:00,2111:00,Caden Kumar,0862001010,PUC,0,0,PZL,4.5");
 	}
 	
-	//--------
-	// Have blank inputs
-	//--------
+	/**
+	 * Have blank inputs
+	 * @throws LogHandlerException LogHandlerException Exceptions thrown if there are errors in the logfile
+	 * @throws PizzaException Thrown if there is an underlying exception other than errors in parsing
+	 * the log file
+	 * */
 	@Test (expected = LogHandlerException.class)
 	public void makePizzaWithBlankInputs () throws PizzaException, LogHandlerException {
 		LogHandler.createPizza(",,,,,,,,");

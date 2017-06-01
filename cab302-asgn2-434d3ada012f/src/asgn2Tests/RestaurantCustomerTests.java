@@ -22,8 +22,10 @@ public class RestaurantCustomerTests {
 		/**
 		 * Testing getPizzaByIndex and more general testing
 		 * Using logfile 20170101.txt
-		 * @throws CustomerException 
-		 */
+		 * @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+		 * @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+		 * @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
+		*/
 		@Test(expected = CustomerException.class)
 		public void TestgetPizzaByIndexException() throws LogHandlerException, CustomerException, PizzaException {
 			PizzaRestaurant restaurant = new PizzaRestaurant();
@@ -33,8 +35,10 @@ public class RestaurantCustomerTests {
 		
 		/**
 		 * Testing getPizzaByIndex and more general testing
+		 * @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+		 * @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+		 * @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 		 * Using logfile 20170101.txt
-		 * @throws CustomerException 
 		 */
 		@Test
 		public void TestgetPizzaByIndexGeneral () throws LogHandlerException, CustomerException, PizzaException {
@@ -59,7 +63,9 @@ public class RestaurantCustomerTests {
 		/**
 		 * Testing getNumCustomerOrders()
 		 * Using logfile 20170103.txt
-		 * @throws CustomerException 
+		 * @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+		 * @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+		 * @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 		 */
 		@Test
 		public void TestgetNumCustomerOrders() throws LogHandlerException, CustomerException, PizzaException {
@@ -71,7 +77,9 @@ public class RestaurantCustomerTests {
 		/**
 		 * Testing TotalDeliveryDistance
 		 * Using logfile 20170103.txt
-		 * @throws CustomerException 
+		 * @throws LogHandlerException Thrown if there are any problem in parsing the input of createPizza
+		 * @throws PizzaException Thrown if there are any errors unrelated to the LogHandler Exception
+		 * @throws CustomerException Thrown if any thing is wrong in processing the log file in restaurant.processLog()
 		 */
 		@Test
 		public void TestgetTotalDeliveryDistance() throws LogHandlerException, CustomerException, PizzaException {

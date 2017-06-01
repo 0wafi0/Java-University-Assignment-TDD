@@ -19,14 +19,16 @@ public class CustomerFactoryTests {
 	/**
 	 * Test the exceptions for Customer Factory Tests
 	 * test for random customer code
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
-	public void TestCostumerFactoryException1() throws CustomerException {
+	public void TestCostumerFactoryException1() throws CustomerException  {
 		CustomerFactory.getCustomer("Oh dear", "Scott", "0582342341", 0, 0);
 	}
 	
 	/**
 	 * put in appropriate customer code but invalid number
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException2() throws CustomerException {
@@ -35,6 +37,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * Try testing for invalid empty name
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException3() throws CustomerException {
@@ -43,6 +46,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * Try testing for invalid white spaces name
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException4() throws CustomerException {
@@ -51,6 +55,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * Try testing for name that is 21 characters
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException5() throws CustomerException {
@@ -59,6 +64,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for PUC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException6() throws CustomerException {
@@ -67,6 +73,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for PUC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException7() throws CustomerException {
@@ -75,6 +82,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for PUC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException8() throws CustomerException {
@@ -83,6 +91,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DNC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException14() throws CustomerException {
@@ -91,6 +100,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DNC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException15() throws CustomerException {
@@ -99,6 +109,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DNC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException16() throws CustomerException {
@@ -107,6 +118,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DNC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException9() throws CustomerException {
@@ -115,6 +127,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DVC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException10() throws CustomerException {
@@ -123,6 +136,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DVC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException11() throws CustomerException {
@@ -131,6 +145,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DVC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException12() throws CustomerException {
@@ -139,6 +154,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * test for coordinate exceptions for DVC
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestCostumerFactoryException13() throws CustomerException {
@@ -147,7 +163,7 @@ public class CustomerFactoryTests {
 	
 	/**
 	 * General testing of the class for various cases
-	 * 
+	 * @throws CustomerException thrown by getCustomer() for invalid inputs
 	 */
 	@Test
 	public void GeneralTesting() throws CustomerException {

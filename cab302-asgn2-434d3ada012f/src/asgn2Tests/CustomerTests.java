@@ -28,14 +28,16 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid name empty spaces
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
-	public void TestConsumerException1() throws CustomerException {
+	public void TestConsumerException1() throws CustomerException  {
 		Customer temp = new DriverDeliveryCustomer("  ", "08888888281", 4, 6);
 	}
 	
 	/**
 	 * Invalid name empty name
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException2() throws CustomerException {
@@ -44,6 +46,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Mobile number - empty
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException3() throws CustomerException {
@@ -52,6 +55,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Mobile number - no leading 0
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException4() throws CustomerException {
@@ -60,6 +64,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Mobile number too long
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException5() throws CustomerException {
@@ -68,6 +73,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Mobile number too short
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException6() throws CustomerException {
@@ -76,6 +82,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Coordinates all 0
+	 * @throws CustomerException exception thrown by the customer and its subclasses 
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException7() throws CustomerException {
@@ -84,6 +91,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Coordinates x 11
+	 * @throws CustomerException exception thrown by the customer and its subclasses 
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException8() throws CustomerException {
@@ -92,6 +100,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Coordinates y 11
+	 * @throws CustomerException exception thrown by the customer and its subclasses 
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException10() throws CustomerException {
@@ -100,6 +109,7 @@ public class CustomerTests {
 	
 	/**
 	 * Invalid Coordinates all 11
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void TestConsumerException11() throws CustomerException {
@@ -109,6 +119,7 @@ public class CustomerTests {
 	/**
 	 * General testing of the abstract Customer class using DriverDeliveryClass
 	 * This test will also test the 
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test
 	public void GeneralTestAbstractCustomerClass() throws CustomerException {
@@ -131,6 +142,7 @@ public class CustomerTests {
 	
 	/**
 	 * Following will test the the DriverDeliveryCustomer class
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test
 	public void GeneralTestDriverDeliveryCustomer() throws CustomerException {
@@ -143,6 +155,7 @@ public class CustomerTests {
 	
 	/**
 	 * Following will test the the DroneDeliveryCustomer class
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test
 	public void GeneralTestDroneDeliveryCustomer() throws CustomerException {
@@ -157,6 +170,7 @@ public class CustomerTests {
 	
 	/**
 	 * Following will test the the DroneDeliveryCustomer class
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test
 	public void GeneralTestPickUpCustomer() throws CustomerException {
@@ -171,6 +185,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery1() throws CustomerException {
@@ -179,6 +194,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery2() throws CustomerException {
@@ -187,6 +203,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery3() throws CustomerException {
@@ -195,6 +212,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery4() throws CustomerException {
@@ -203,6 +221,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery5() throws CustomerException {
@@ -211,6 +230,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery6() throws CustomerException {
@@ -219,6 +239,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery7() throws CustomerException {
@@ -227,6 +248,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery8() throws CustomerException {
@@ -235,6 +257,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestDroneDelivery9() throws CustomerException {
@@ -243,6 +266,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer1() throws CustomerException {
@@ -251,6 +275,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer2() throws CustomerException {
@@ -259,6 +284,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer3() throws CustomerException {
@@ -267,6 +293,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer4() throws CustomerException {
@@ -275,6 +302,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer5() throws CustomerException {
@@ -283,6 +311,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer6() throws CustomerException {
@@ -291,6 +320,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer7() throws CustomerException {
@@ -299,6 +329,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer8() throws CustomerException {
@@ -307,6 +338,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer9() throws CustomerException {
@@ -315,6 +347,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer10() throws CustomerException {
@@ -323,6 +356,7 @@ public class CustomerTests {
 	
 	/**
 	 * Conduct more exception tests for the various classes
+	 * @throws CustomerException exception thrown by the customer and its subclasses
 	 */
 	@Test(expected = CustomerException.class)
 	public void ExceptionTestPickuUpCustomer11() throws CustomerException {
